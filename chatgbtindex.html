@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" type="text/css" href="chatstyle.css/">
+  <title>Code Quiz</title>
+</head>
+<body>
+  <h1>Code Quiz</h1>
+  <button id="start-button">Start Quiz</button>
+  <div id="question-container"></div>
+  <div id="result"></div>
+  <div id="timer">Time: <span id="time-remaining"></span></div>
+  <button id="submit-score" style="display: none;">Submit Score</button>
+  <input type="text" id="initials" style="display: none;">
+  <button id="save-score" style="display: none;">Save Score</button>
+  <script>
+    const questions = [
+      {
+        question: "What is 2 + 2?",
+        options: ["3", "4", "5", "6"],
+        answer: "4"
+      },
+      {
+        question: "What is 3 * 7?",
+        options: ["10", "21", "14", "7"],
+        answer: "21"
+      },
+      // Add more questions here
+    ];
+
+    let currentQuestionIndex = 0;
+    let timeLeft = 70; // initial time
+    let timerInterval;
+
+    const startButton = document.getElementById("start-button");
+    const questionContainer = document.getElementById("question-container");
+    const timeRemaining = document.getElementById("time-remaining");
+    const submitScoreButton = document.getElementById("submit-score");
+    const initialsInput = document.getElementById("initials");
+    const saveScoreButton = document.getElementById("save-score");
+
+    function startQuiz() {
+      startButton.style.display = "none";
+      timerInterval = setInterval(updateTimer, 1000);
+      displayQuestion(currentQuestionIndex);
+    }
+
+    function updateTimer() {
+      timeLeft--;
+      timeRemaining.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        endQuiz();
+      }
+    }
+
+    function displayQuestion(index) {
+      if (index < questions.length) {
+        const currentQuestion = questions[index];
+        questionContainer.innerHTML = `
+          <p>${currentQuestion.question}</p>
+          <ul>
+            ${currentQuestion.options.map(option => `<li onclick="checkAnswer('${option}')">${option}</li>`).join('')}
+          </ul>
+        `;
+      } else {
+        endQuiz();
+      }
+    }
+
+    function checkAnswer(selectedAnswer) {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (selectedAnswer === currentQuestion.answer) {
+        currentQuestionIndex++;
+        displayQuestion(currentQuestionIndex);
+      } else {
+        timeLeft -= 10; // Time penalty for incorrect answer
+      }
+    }
+
+    function endQuiz() {
+      clearInterval(timerInterval);
+      questionContainer.innerHTML = "Quiz over!";
+      submitScoreButton.style.display = "block";
+    }
+
+    function submitScore() {
+      submitScoreButton.style.display = "none";
+      initialsInput.style.display = "block";
+      saveScoreButton.style.display = "block";
+    }
+
+    function saveScore() {
+      const initials = initialsInput.value;
+      // You can save the score and initials as needed, e.g., to local storage or send to a server.
+      // For simplicity, we'll just log it here.
+      console.log(`Initials: ${initials}, Score: ${timeLeft}`);
+    }
+
+    startButton.addEventListener("click", startQuiz);
+    submitScoreButton.addEventListener("click", submitScore);
+    saveScoreButton.addEventListener("click", saveScore);
+  </script>
+</body>
+</html
