@@ -12,21 +12,38 @@
   <div id="question-container"></div>
   <div id="result"></div>
   <div id="timer">Time: <span id="time-remaining"></span></div>
-  <button id="submit-score" style="display: none;">Submit Score</button>
-  <input type="text" id="initials" style="display: none;">
-  <button id="save-score" style="display: none;">Save Score</button>
+  <button id="submit-score">View High Score</button>
+  <input type="text" id="initials">
+  <button id="save-score">Save Score</button>
   <script>
     const questions = [
       {
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
-        answer: "4"
+        question: "What does WWW stand for?",
+        options: ["Word Walt Water","When We Would","None Of The Above","World Wide Web"],
+        answer: "World Wide Web"
       },
       {
-        question: "What is 3 * 7?",
-        options: ["10", "21", "14", "7"],
-        answer: "21"
+        question: "what are Arrays in JavaScript used to store?",
+        options: ["1.Numbers & strings,2. Other arrays,3. Booleans,4. All the above"],
+        answer: "All of the above"
       },
+      {
+        question :"Commonly used data types do not include:"
+        options: ["1.strings,2.booleans,3.numbers,4.alerts"]
+        answer: "alerts"
+      },
+      {
+        question :"What's the HTML tag for creating an ordered list?"
+        options:["1.<p>,2. <ol>,3. <ul>,4. None of the above"],
+        answer: "<ol>"
+      }, 
+      {
+        question :"String values must be enclosed within ______ when being assigned to variables."
+        options:["1.commas,2.curly brackets,3.quotes,4.parenthesis"]
+        answer: "curly brackets"
+      },
+
+   
       // Add more questions here
     ];
 
