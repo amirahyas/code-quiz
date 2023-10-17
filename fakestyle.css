@@ -29,6 +29,7 @@ h1 {
 .time-remaining {
     float: right;
 }
+/* styles for button */
 button {
     padding: 10px 20px;
     display: block;
@@ -37,6 +38,8 @@ button {
     border: nones;
     cursor: pointer;
     margin: 0 auto;
+    
+
 }
 
 #start-button {
@@ -82,19 +85,40 @@ li {
 
 #submit-score {
     display: none;
-    background-color: #28a745;
+    background-color: #474947;
 }
 
 #initials {
     display: none;
     padding: 10px;
 }
+/* Define initial style for buttons */
+
+#]answer {
+    border: 2px solid #333;
+    padding: 10 px 20px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#answer:active {
+    background-color: #333;
+    color: #fff;
+}
+
+#start-button {
+
+}
+
 #save-score {
     display: none;
-    background-color: #a75063
+    background-color: #474947;
+   
 }
 
 #save-score:hover {
     
-    background-color: #0056b3;
+    background-color: #474947;
+   
 }
