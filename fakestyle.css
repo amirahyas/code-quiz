@@ -30,6 +30,10 @@ h1 {
     float: right;
 }
 /* styles for button */
+
+li.clicked {
+    border: 2px solid blue;
+}
 button {
     padding: 10px 20px;
     display: block;
@@ -94,7 +98,7 @@ li {
 }
 /* Define initial style for buttons */
 
-#]answer {
+#answer {
     border: 2px solid #333;
     padding: 10 px 20px;
     background-color: #fff;
@@ -107,9 +111,25 @@ li {
     color: #fff;
 }
 
-#start-button {
+/* button style */
 
-}
+button {
+    display: inline-block;
+    font-family: sans-serif;
+    background-color: #5e6df1;
+    border-radius: 10px;
+    border: 3px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    width: 200px;
+    margin-top: 3px;
+  }
+
+  button:hover{
+      box-shadow: 4px 3px 6px #4450bd;
+  }
 
 #save-score {
     display: none;

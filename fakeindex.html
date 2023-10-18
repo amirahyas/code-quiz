@@ -1,123 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" type="text/css" href="fakestyle.css">
-  <title>Code Quiz</title>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quiz </title>
+ <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Code Quiz</h1>
-  <button id="start-button">Start Quiz</button>
-  <div id="question-container"></div>
-  <div id="result"></div>
-  <div id="timer">Time: <span id="time-remaining"></span></div>
-  <button id="submit-score">View High Score</button>
-  <input type="text" id="initials">
-  <button id="save-score">Save Score</button>
-  <script>
-    const questions = [
-      {
-        question: "What does WWW stand for?",
-        options: ["1. Word Walt Water","2. When We Would","3. World Wide Web","4. None of the above"],
-        answer: "World Wide Web"
-      },
-      {
-        question: "what are Arrays in JavaScript used to store?",
-        options: ["1. Numbers & strings","2. Other arrays","3. Booleans","4. All the above"],
-        answer: "All of the above"
-      },
-      {
-        question : "Commonly used data types do not include:",
-        options: ["1. strings","2. booleans","3. numbers","4. alerts"],
-        answer: "alerts"
-      },
-      {
-        question : "What's the HTML tag for creating an ordered list?",
-        options: ["1. <p>","2. <ol>","3. <ul>", "4. None of the above"],
-        answer: "<ol>"
-      }, 
-      {
-        question : "String values must be enclosed within ______ when being assigned to variables.",
-        options: ["1.commas,2.curly brackets,3.quotes,4.parenthesis"],
-        answer: "curly brackets"
-      },
+  <div class="container">
 
-   
-      // Add more questions here
-    ];
-
-    let currentQuestionIndex = 0;
-    let timeLeft = 70; // initial time
-    let timerInterval;
-
-    const startButton = document.getElementById("start-button");
-    const questionContainer = document.getElementById("question-container");
-    const timeRemaining = document.getElementById("time-remaining");
-    const submitScoreButton = document.getElementById("submit-score");
-    const initialsInput = document.getElementById("initials");
-    const saveScoreButton = document.getElementById("save-score");
-
-    function startQuiz() {
-      startButton.style.display = "none";
-      timerInterval = setInterval(updateTimer, 1000);
-      displayQuestion(currentQuestionIndex);
-    }
-
-    function updateTimer() {
-      timeLeft--;
-      timeRemaining.textContent = timeLeft;
-      if (timeLeft <= 0) {
-        endQuiz();
-      }
-    }
-
-    function displayQuestion(index) {
-      if (index < questions.length) {
-        const currentQuestion = questions[index];
-        questionContainer.innerHTML = `
-          <p>${currentQuestion.question}</p>
-          <ul>
-            ${currentQuestion.options.map(option => `<li onclick="checkAnswer('${option}')">${option}</li>`).join('')}
-          </ul>
-        `;
-      } else {
-        endQuiz();
-      }
-    }
-
-    function checkAnswer(selectedAnswer) {
-      const currentQuestion = questions[currentQuestionIndex];
-      if (selectedAnswer === currentQuestion.answer) {
-        currentQuestionIndex++;
-        displayQuestion(currentQuestionIndex);
-      } else {
-        timeLeft -= 10; // Time penalty for incorrect answer
-      }
-    }
-
-    function endQuiz() {
-      clearInterval(timerInterval);
-      questionContainer.innerHTML = "Quiz over!";
-      submitScoreButton.style.display = "block";
-    }
-
-    function submitScore() {
-      submitScoreButton.style.display = "none";
-      initialsInput.style.display = "block";
-      saveScoreButton.style.display = "block";
-    }
-
-    function saveScore() {
-      const initials = initialsInput.value;
-      // You can save the score and initials as needed, e.g., to local storage or send to a server.
-      // For simplicity, we'll just log it here.
-      console.log(`Initials: ${initials}, Score: ${timeLeft}`);
-    }
-
-    startButton.addEventListener("click", startQuiz);
-    submitScoreButton.addEventListener("click", submitScore);
-    saveScoreButton.addEventListener("click", saveScore);
-  </script>
+    <div id="startpage">
+      <h1>Code Quiz</h1>
+    <button id="startbtn">Start Code Quiz</button>
+    <button id="startPageHighscore" onclick="showHighscore()">High Scores</button>
+    </div>
+    <div id="quiz">
+      <div id="timer">Time left: </div>
+         <div id="questions"><p>Questions</p></div>
+            <button id="A" onclick="checkAnswer('A')">A</button>
+             <button id="B" onclick="checkAnswer('B')">B</button>
+             <button id="C" onclick="checkAnswer('C')">C</button>
+             <button id="D" onclick="checkAnswer('D')">D</button>
+          <div id="result"></div>
+  </div>
+        <div id="gameover">
+            <div id="finalScore"></div>
+            <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
+            <button id="submitScore">Submit Score</button>
+        </div>
+        <div id=highscoreContainer>
+        <div id="high-scorePage">
+            <div id="highscore-header">
+                <h2>User Initials</h3>
+                <h2>Score</h3>
+            </div>
+            <div id = "highscore-initials"></div>
+            <div id = "highscore-score"></div>
+        </div>
+        <div id="endGameBtns">
+            <button id="playAgain" onclick="replayQuiz()">Play Again</button>
+            <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
+        </div>
+    </div>
+    </div>
+    <script src="fakescript.js"></script>
 </body>
-</html
+</html>
