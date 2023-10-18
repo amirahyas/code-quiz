@@ -2,7 +2,7 @@ var quizBody = document.getElementById("quiz");
 var startQuizDiv = document.getElementById("startpage");
 var highscoreContainer = document.getElementById("highscore-page");
 var startQuizButton = document.getElementById("startbtn");
-var Quizquestions = document.getElementById("questions");
+var quizQuestions = document.getElementById("questions");
 var submitScoreButton = document.getElementById("submit-score");
 var initialsInput = document.getElementById("initials");
 var finalScoreE1 = document.getElementById("finalScore");
@@ -17,7 +17,7 @@ var buttonC = document.getElementById("c");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
-var Quizquestions = [{
+var quizQuestions = [{
   question: "What does WWW stand for?",
   choiceA: "Word Walt Water",
   choiceB: " When We Would",
@@ -30,7 +30,7 @@ var Quizquestions = [{
   choiceA: "Numbers & strings",
   choiceB: " Other arrays",
   choiceC:" Booleans",
-  choiceD: " All the above",
+  choiceD: " All of the above",
   correctAnswer: "D"
  },
  {
@@ -54,13 +54,13 @@ var Quizquestions = [{
   choiceA: "commas",
   choiceB: "curly brackets",
   choiceC: "quotes",
-  choiceD: "parenthesis",
-  correctAnswer: "B"
+  choiceD: "parentheses",
+  correctAnswer: "C"
 },
 ];
 
 // global variables
-let finalQuestionIndex = Quizquestions.length;
+let finalQuestionIndex = quizQuestions.length;
 let currentQuestionIndex = 0;
 let timeLeft = 70; // initial time
 let timerInterval;
@@ -68,7 +68,7 @@ let score = 0;
 let correct;
 
 // this function generates questions & answers
-function generateQuizQuestion(){
+function generatequizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
@@ -98,7 +98,7 @@ function startQuiz() {
      }, 1000);
   quizBody.style.display = "block";
 }
-// this fucion shows the last page after quiz times out
+// Function to show final score page
 function showScore(){
   quizBody.style.display = "none"
   gameoverDiv.style.display = "flex";
@@ -107,7 +107,7 @@ function showScore(){
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
-// click button to show string of high scores
+// click button to show high scores
 submitScoreButton.addEventListener("click", function highscore() {
   
     
@@ -118,12 +118,11 @@ submitScoreButton.addEventListener("click", function highscore() {
    var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
    var currentUser = highscoreInputName.value.trim();
    var currentHighscore = {
-      name : currentUser,
-     score : score
+      name: currentUser,
+      score: score
     };
    gameoverDiv.style.display = "none";
    highscoreContainer.style.display = "flex";
-   highscoreDiv.style.display = "block";
    gameoverDiv.style.display = "flex";
 
     savedHighscores.push(currentHighscore);
@@ -135,8 +134,7 @@ submitScoreButton.addEventListener("click", function highscore() {
   
 });
 
-// this function checks response to each answer choice.
-
+// Function to check selected answer
 function checkAnswer(selectedAnswer){
       correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
@@ -144,7 +142,7 @@ function checkAnswer(selectedAnswer){
         score++;
         alert("That is correct!")
         currentQuestionIndex++;
-        generatquizQuestion();
+        generatquizQuestions();
       
       } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
         alert("That Is Incorrect.")
@@ -155,30 +153,46 @@ function checkAnswer(selectedAnswer){
       }
 };  
 
-// when clicking submit, the string of high scores appear
 
-    
+
+// this function times quiz out
     function endQuiz() {
       clearInterval(timerInterval);
       questionContainer.innerHTML = "Quiz over!";
       submitScoreButton.style.display = "block";
 }
+// this function displays gih score page
+function showHighscore(){
+  startQuizDiv.style.display = "none"
+  gameoverDiv.style.display = "none";
+  highscoreContainer.style.display = "flex";
+  highscoreDiv.style.display = "block";
+  endGameBtns.style.display = "flex";
 
-  
+  generateHighscores();
+}
 
-    function submitScore() {
-      submitScoreButton.style.display = "none";
-      initialsInput.style.display = "block";
-      saveScoreButton.style.display = "block";
-    }
+// this functions starts quiz over
+function replayQuiz(){
+  highscoreContainer.style.display = "none";
+  gameoverDiv.style.display = "none";
+  startQuizDiv.style.display = "flex";
+  timeLeft = 76;
+  score = 0;
+  currentQuestionIndex = 0;
+}
 
+// function saves user intials and score
     function saveScore() {
-      const initials = initialsInput.value;
-      // You can save the score and initials as needed, e.g., to local storage or send to a server.
-      // For simplicity, we'll just log it here.
+      quizBody.style.display = "none"
+      gameoverDiv.style.display ="flex"
+      clearInterval (timerInterval);
+      highscoreInputName.value = "";
+      finalScoreE1.innerHTML = "You got" + score + "out of" + quizQuestions.length + "correct!"
+      
       console.log(`Initials: ${initials}, Score: ${timeLeft}`);
     }
-
+// event listeners for buttons
     startQuizButton.addEventListener("click", startQuiz);
     submitScoreButton.addEventListener("click", submitScore);
     saveScoreButton.addEventListener("click", saveScore);
