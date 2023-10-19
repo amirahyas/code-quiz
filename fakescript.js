@@ -3,7 +3,7 @@ var startQuizDiv = document.getElementById("startpage");
 var highscoreContainer = document.getElementById("highscore-page");
 var startQuizButton = document.getElementById("startbtn");
 var quizQuestions = document.getElementById("questions");
-var submitScoreButton = document.getElementById("submit-score");
+var submitScoreButton = document.getElementById("submitScore");
 var initialsInput = document.getElementById("initials");
 var finalScoreE1 = document.getElementById("finalScore");
 var highscoreInputName = document.getElementById("initials");
@@ -13,7 +13,7 @@ var quizTimer = document.getElementById ("timer");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
-var buttonC = document.getElementById("c");
+var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
@@ -127,7 +127,12 @@ submitScoreButton.addEventListener("click", function highscore() {
 
     savedHighscores.push(currentHighscore);
     localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-    generateHighscores()
+
+   function generateHighscores() {
+      const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+      return savedHighscores;
+
+    }
 
     
   };
@@ -169,7 +174,7 @@ function showHighscore(){
   highscoreDiv.style.display = "block";
   endGameBtns.style.display = "flex";
 
-  generateHighscores();
+  generateHighscore();
 }
 
 // this functions starts quiz over
