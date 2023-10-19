@@ -68,11 +68,13 @@ let score = 0;
 let correct;
 
 // this function generates questions & answers
-function generatequizQuestion(){
+function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
   var currentQuestion = quizQuestions[currentQuestionIndex];
+
+  // Amirah, the line below is undefined. 
   questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
   buttonA.innerHTML = currentQuestion.choiceA;
   buttonB.innerHTML = currentQuestion.choiceB;
@@ -81,7 +83,7 @@ function generatequizQuestion(){
 };
 // start quiz starts the timer & displays first question
 function startQuiz() {
-   startQuiz.style.display = "none";
+  startQuizDiv.style.display = "none";
    gameoverDiv.style.display = "none";
    generateQuizQuestion();
 
@@ -104,40 +106,36 @@ function showScore(){
   gameoverDiv.style.display = "flex";
   clearInterval(timerInterval);
   highscoreInputName.value = "";
+
+  // Amirah, the line below is undefined. You need to create the finalScoreE1 element in the html.
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
 // click button to show high scores
 submitScoreButton.addEventListener("click", function highscore() {
-  
-    
   if(highscoreInputName.value === "") {
     alert("Initials cannot be blank");
     return false;
-  }else{
-   var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-   var currentUser = highscoreInputName.value.trim();
-   var currentHighscore = {
+  } else {
+    var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    var currentUser = highscoreInputName.value.trim();
+    var currentHighscore = {
       name: currentUser,
       score: score
     };
-   gameoverDiv.style.display = "none";
-   highscoreContainer.style.display = "flex";
-   gameoverDiv.style.display = "flex";
+    gameoverDiv.style.display = "none";
+    highscoreContainer.style.display = "flex";
+    gameoverDiv.style.display = "flex";
 
     savedHighscores.push(currentHighscore);
     localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-
-   function generateHighscores() {
-      const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
-      return savedHighscores;
-
-    }
-
-    
   };
-  
 });
+
+function generateHighscores() {
+  const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+  return savedHighscores;
+}
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer){

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Quiz </title>
- <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&family=Poppins:ital,wght@0,300;0,500;0,600;1,400&display=swap" rel="stylesheet">;
+  <link rel="stylesheet" type="text/css" href="fakestyle.css">
 </head>
 <body>
   <div class="container">
@@ -26,7 +28,7 @@
         <div id="gameover">
             <div id="finalScore"></div>
             <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
-            <button id="submit-score">Submit Score</button>
+            <button id="submitScore">Submit Score</button>
         </div>
         <div id=highscore-page>
         <div id="highscore-score">
@@ -39,6 +41,7 @@
         <div id="endGameBtns">
             <button id="playAgain" onclick="replayQuiz()">Play Again</button>
             <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
+            <button id="savescore" onclick="savescore()">Save Score</button>
         </div>
     </div>
     </div>
