@@ -2,7 +2,6 @@ var quizBody = document.getElementById("quiz");
 var startQuizDiv = document.getElementById("startpage");
 var highscoreContainer = document.getElementById("highscore-page");
 var startQuizButton = document.getElementById("startbtn");
-var quizQuestions = document.getElementById("questions");
 var submitScoreButton = document.getElementById("submitScore");
 var initialsInput = document.getElementById("initials");
 var finalScoreE1 = document.getElementById("finalScore");
@@ -10,6 +9,7 @@ var highscoreInputName = document.getElementById("initials");
 var highscoreDisplayScore = document.getElementById("highscore-score");
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
+var questionsEl = document.getElementById("questions");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -17,7 +17,7 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
-var quizQuestions = [{
+var questionsEl = [{
   question: "What does WWW stand for?",
   choiceA: "Word Walt Water",
   choiceB: " When We Would",
@@ -60,7 +60,7 @@ var quizQuestions = [{
 ];
 
 // global variables
-let finalQuestionIndex = quizQuestions.length;
+let finalQuestionIndex = questionsEl.length;
 let currentQuestionIndex = 0;
 let timeLeft = 70; // initial time
 let timerInterval;
@@ -72,7 +72,7 @@ function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
-  var currentQuestion = quizQuestions[currentQuestionIndex];
+  var currentQuestion = questionsEl[currentQuestionIndex];
 
   // Amirah, the line below is undefined. 
   questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
@@ -139,13 +139,13 @@ function generateHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer){
-      correct = quizQuestions[currentQuestionIndex].correctAnswer;
+      correct = questionsEl[currentQuestionIndex].correctAnswer;
 
       if (selectedAnswer === correct && quizQuestionsIndex !== finalQuestionIndex){ 
         score++;
         alert("That is correct!")
         currentQuestionIndex++;
-        generatquizQuestions();
+        generatequestionsE1();
       
       } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
         alert("That Is Incorrect.")
