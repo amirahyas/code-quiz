@@ -17,7 +17,7 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
-var questionsEl = [{
+var quizQuestions = [{
   question: "What does WWW stand for?",
   choiceA: "Word Walt Water",
   choiceB: " When We Would",
@@ -60,7 +60,7 @@ var questionsEl = [{
 ];
 
 // global variables
-let finalQuestionIndex = questionsEl.length;
+let finalQuestionIndex = quizQuestions.length;
 let currentQuestionIndex = 0;
 let timeLeft = 70; // initial time
 let timerInterval;
@@ -68,14 +68,14 @@ let score = 0;
 let correct;
 
 // this function generates questions & answers
-function generateQuizQuestion(){
+function generatequizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
-  var currentQuestion = questionsEl[currentQuestionIndex];
+  var currentQuestion = quizQuestions[currentQuestionIndex];
 
   // Amirah, the line below is undefined. 
-  questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
+  quzQuestions.innerHTML = "<p>" + currentQuestion.question + "</p>";
   buttonA.innerHTML = currentQuestion.choiceA;
   buttonB.innerHTML = currentQuestion.choiceB;
   buttonC.innerHTML = currentQuestion.choiceC;
@@ -85,7 +85,7 @@ function generateQuizQuestion(){
 function startQuiz() {
   startQuizDiv.style.display = "none";
    gameoverDiv.style.display = "none";
-   generateQuizQuestion();
+   generateQuizQuestions();
 
 
   // timer
@@ -145,7 +145,7 @@ function checkAnswer(selectedAnswer){
         score++;
         alert("That is correct!")
         currentQuestionIndex++;
-        generatequestionsE1();
+        generatequizQuestions();
       
       } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
         alert("That Is Incorrect.")
