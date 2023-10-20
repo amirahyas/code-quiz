@@ -9,7 +9,7 @@ var highscoreInputName = document.getElementById("initials");
 var highscoreDisplayScore = document.getElementById("highscore-score");
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("questions");
+var questionsEl = document.getElementById("quizQuestions");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -17,8 +17,8 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
-var quizQuestions = [{
-  question: "What does WWW stand for?",
+ quizQuestions = [{
+  quizQuestion: "What does WWW stand for?",
   choiceA: "Word Walt Water",
   choiceB: " When We Would",
   choiceC:" World Wide Web",
@@ -26,7 +26,7 @@ var quizQuestions = [{
   correctAnswer: "D"
   },
    {
-  question: "what are Arrays in JavaScript used to store?",
+  quizQuestions: "what are Arrays in JavaScript used to store?",
   choiceA: "Numbers & strings",
   choiceB: " Other arrays",
   choiceC:" Booleans",
@@ -34,7 +34,7 @@ var quizQuestions = [{
   correctAnswer: "D"
  },
  {
- question : "Commonly used data types do not include:",
+ quizQuestions : "Commonly used data types do not include:",
   choiceA:" strings",
   choiceB: " booleans",
   choiceC: " numbers",
@@ -42,7 +42,7 @@ var quizQuestions = [{
   answer: "D"
 },
 {
-  question : "What's the HTML tag for creating an ordered list?",
+  quizQuestions : "What's the HTML tag for creating an ordered list?",
   choiceA:" <p>",
   choiceB: " <ol>",
   choiceC:" <ul>",
@@ -50,7 +50,7 @@ var quizQuestions = [{
   correctAnswer: "C"
 }, 
 {
-  question : "String values must be enclosed within ______ when being assigned to variables.",
+  quizQuestions : "String values must be enclosed within ______ when being assigned to variables.",
   choiceA: "commas",
   choiceB: "curly brackets",
   choiceC: "quotes",
@@ -68,14 +68,14 @@ let score = 0;
 let correct;
 
 // this function generates questions & answers
-function generatequizQuestion(){
+function generatequizQuestions(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
   var currentQuestion = quizQuestions[currentQuestionIndex];
 
   // Amirah, the line below is undefined. 
-  quzQuestions.innerHTML = "<p>" + currentQuestion.question + "</p>";
+  questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
   buttonA.innerHTML = currentQuestion.choiceA;
   buttonB.innerHTML = currentQuestion.choiceB;
   buttonC.innerHTML = currentQuestion.choiceC;
@@ -85,7 +85,7 @@ function generatequizQuestion(){
 function startQuiz() {
   startQuizDiv.style.display = "none";
    gameoverDiv.style.display = "none";
-   generateQuizQuestions();
+   generatequizQuestions();
 
 
   // timer
