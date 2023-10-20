@@ -17,8 +17,8 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 
 // Quiz questions
- quizQuestions = [{
-  quizQuestion: "What does WWW stand for?",
+ var quizQuestions = [{
+  question: "What does WWW stand for?",
   choiceA: "Word Walt Water",
   choiceB: " When We Would",
   choiceC:" World Wide Web",
@@ -26,7 +26,7 @@ var buttonD = document.getElementById("D");
   correctAnswer: "D"
   },
    {
-  quizQuestions: "what are Arrays in JavaScript used to store?",
+  question: "what are Arrays in JavaScript used to store?",
   choiceA: "Numbers & strings",
   choiceB: " Other arrays",
   choiceC:" Booleans",
@@ -34,7 +34,7 @@ var buttonD = document.getElementById("D");
   correctAnswer: "D"
  },
  {
- quizQuestions : "Commonly used data types do not include:",
+ question : "Commonly used data types do not include:",
   choiceA:" strings",
   choiceB: " booleans",
   choiceC: " numbers",
@@ -42,7 +42,7 @@ var buttonD = document.getElementById("D");
   answer: "D"
 },
 {
-  quizQuestions : "What's the HTML tag for creating an ordered list?",
+  question : "What's the HTML tag for creating an ordered list?",
   choiceA:" <p>",
   choiceB: " <ol>",
   choiceC:" <ul>",
@@ -50,7 +50,7 @@ var buttonD = document.getElementById("D");
   correctAnswer: "C"
 }, 
 {
-  quizQuestions : "String values must be enclosed within ______ when being assigned to variables.",
+  question : "String values must be enclosed within ______ when being assigned to variables.",
   choiceA: "commas",
   choiceB: "curly brackets",
   choiceC: "quotes",
@@ -60,15 +60,15 @@ var buttonD = document.getElementById("D");
 ];
 
 // global variables
-let finalQuestionIndex = quizQuestions.length;
-let currentQuestionIndex = 0;
-let timeLeft = 70; // initial time
-let timerInterval;
-let score = 0;
-let correct;
+var finalQuestionIndex = quizQuestions.length;
+var currentQuestionIndex = 0;
+var timeLeft = 70; // initial time
+var timerInterval;
+var score = 0;
+var correct;
 
 // this function generates questions & answers
-function generatequizQuestions(){
+function generatequizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
@@ -85,7 +85,7 @@ function generatequizQuestions(){
 function startQuiz() {
   startQuizDiv.style.display = "none";
    gameoverDiv.style.display = "none";
-   generatequizQuestions();
+   generatequizQuestion();
 
 
   // timer
@@ -134,7 +134,13 @@ submitScoreButton.addEventListener("click", function highscore() {
 
 function generateHighscores() {
   const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
-  return savedHighscores;
+  var newScoreSpan = document.createElement("li");
+  var newNameSpan = document.createElement("li");
+  newScoreSpan.textContent = highscores[i].score;
+  newNameSpan.textContent = highscores[i].name;
+  highscoreDisplayName.appendChild(newNameSpan);
+  highscoreDisplayScore.appendChild(newScoreSpan);
+
 }
 
 // Function to check selected answer
