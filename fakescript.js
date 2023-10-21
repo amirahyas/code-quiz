@@ -9,7 +9,7 @@ var highscoreDisplayScore = document.getElementById("highscore-score");
 var highscoreDisplayName = document.getElementById ("highscore-initials")
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("quizQuestions");
+var questionsEl = document.getElementById("questionsEl");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -17,14 +17,15 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 var currentQuestionIndex = 0;
 
+var questioncontainer = document.getElementById("questioncontainer");
 
 // Quiz questions
  var quizQuestions = [{
   question: "What does WWW stand for?",
-  choiceA: "Word Walt Water",
-  choiceB: "When We Would",
-  choiceC:"World Wide Web",
-  choiceD: "None of the above",
+  choiceA: "A. Word Walt Water",
+  choiceB: "B. When We Would",
+  choiceC:"C. World Wide Web",
+  choiceD: "D. None of the above",
   correctAnswer: "C"
   },
    {
@@ -72,32 +73,24 @@ var correct;
 
 // this function generates questions & answers
 function generatequizQuestion(){
-
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
 
   var currentQuestion = quizQuestions[currentQuestionIndex];
   
- questionsEl.textContent = currentQuestion.question;
- buttonA.textContent = currentQuestion.choiceA;
- buttonB.textContent = currentQuestion.choiceB;
- buttonC.textContent = currentQuestion.choiceC;
-
- buttonD.textContent = currentQuestion.choiceD;
-
-  // // Amirah, the line below is undefined. 
-  // questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
-  // buttonA.innerHTML = currentQuestion.choiceA;
-  // buttonB.innerHTML = currentQuestion.choiceB;
-  // buttonC.innerHTML = currentQuestion.choiceC;
-  // buttonD.innerHTML = currentQuestion.choiceD;
+  questionsEl.textContent = currentQuestion.question;
+  buttonA.textContent = currentQuestion.choiceA;
+  buttonB.textContent = currentQuestion.choiceB;
+  buttonC.textContent = currentQuestion.choiceC;
+  buttonD.textContent = currentQuestion.choiceD;
 };
 
 
 // start quiz starts the timer & displays first question
 function startQuiz() {
 
+  questioncontainer.style.display = "block";
   startQuizDiv.style.display = "none";
   gameoverDiv.style.display = "none";
   generatequizQuestion();
@@ -168,23 +161,9 @@ function generateHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
+  debugger;
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
-}
-function checkAnswerA() {
-  checkAnswer('A');
-}
-function checkAnswerB() {
-  checkAnswer('B');
-}
-function checkAnswerC() {
-  checkAnswer('C');
-}
-function checkAnswerD() {
-  checkAnswer('D');
 
-
-
-  // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
   if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
     score++;
     alert("That is correct!")
@@ -198,8 +177,7 @@ function checkAnswerD() {
   } else{
     showScore();
   }
-};
-
+}
 
 // this function times quiz out
     function endQuiz() {
@@ -250,3 +228,11 @@ buttonA.addEventListener("click", function () { checkAnswer('A'); });
 buttonB.addEventListener("click", function () { checkAnswer('B'); });
 buttonC.addEventListener("click", function () { checkAnswer('C'); });
 buttonD.addEventListener("click", function () { checkAnswer('D'); });
+
+
+
+function init() {
+  questioncontainer.style.display = "none";
+}
+
+init();
