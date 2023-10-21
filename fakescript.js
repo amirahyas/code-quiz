@@ -9,7 +9,7 @@ var highscoreDisplayScore = document.getElementById("highscore-score");
 var highscoreDisplayName = document.getElementById ("highscore-initials")
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("quizQuestions");
+var questionsEl = document.getElementById("questions");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -17,46 +17,47 @@ var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 var currentQuestionIndex = 0;
 
+var questionscontainer = document.getElementById("questionscontainer");
 
 // Quiz questions
  var quizQuestions = [{
   question: "What does WWW stand for?",
-  choiceA: "Word Walt Water",
-  choiceB: "When We Would",
-  choiceC:"World Wide Web",
-  choiceD: "None of the above",
+  choiceA : "A. Word Walt Water",
+  choiceB : "B. When We Would",
+  choiceC : "C. World Wide Web",
+  choiceD : "D.None of the above",
   correctAnswer: "C"
   },
    {
-  question: "What are Arrays in JavaScript used to store?",
-  choiceA: "Numbers & strings",
-  choiceB: "Other arrays",
-  choiceC:"Booleans",
-  choiceD: "All of the above",
+  question: " What are Arrays in JavaScript used to store?",
+  choiceA : "A. Numbers & strings",
+  choiceB : "B. Other arrays",
+  choiceC : "C. Booleans",
+  choiceD : "D. All of the above",
   correctAnswer: "D"
  },
  {
- question : "Commonly used data types do not include:",
-  choiceA: "strings",
-  choiceB: "booleans",
-  choiceC: "numbers",
-  choiceD: "alerts",
+  question : "Commonly used data types do not include:",
+  choiceA: "A. strings",
+  choiceB: "B. booleans",
+  choiceC: "C. numbers",
+  choiceD: "D. alerts",
   correctAnswer: "D"
 },
 {
   question : "What's the HTML tag for creating an ordered list?",
-  choiceA:"<p>",
-  choiceB: "<ol>",
-  choiceC:"<ul>",
-  choiceD: "None of the above",
+  choiceA:"A. <p>",
+  choiceB: "B. <ol>",
+  choiceC:"C. <ul>",
+  choiceD: "D. None of the above",
   correctAnswer: "B"
 }, 
 {
   question : "String values must be enclosed within ______ when being assigned to variables.",
-  choiceA: "commas",
-  choiceB: "curly brackets",
-  choiceC: "quotes",
-  choiceD: "parentheses",
+  choiceA: "A. commas",
+  choiceB: "B. curly brackets",
+  choiceC: "C. quotes",
+  choiceD: "D. parentheses",
   correctAnswer: "C"
 },
 ];
@@ -98,6 +99,7 @@ function generatequizQuestion(){
 // start quiz starts the timer & displays first question
 function startQuiz() {
 
+  questionscontainer.style.display = "block";
   startQuizDiv.style.display = "none";
   gameoverDiv.style.display = "none";
   generatequizQuestion();
@@ -246,7 +248,13 @@ function saveScore() {
 startQuizButton.addEventListener("click", startQuiz);
 submitScoreButton.addEventListener("click", submitScore);
 saveScoreButton.addEventListener("click", saveScore);
-buttonA.addEventListener("click", function () { checkAnswer('A'); });
-buttonB.addEventListener("click", function () { checkAnswer('B'); });
-buttonC.addEventListener("click", function () { checkAnswer('C'); });
-buttonD.addEventListener("click", function () { checkAnswer('D'); });
+buttonA.addEventListener("click", checkAnswer('A'));
+buttonB.addEventListener("click", checkAnswer ('B'));
+buttonC.addEventListener("click", checkAnswer ('C'));
+buttonD.addEventListener("click", checkAnswer('D'));
+
+function init() {
+  questionscontainer.style.display = "none";
+}
+
+init();
