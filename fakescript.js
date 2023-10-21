@@ -78,7 +78,6 @@ function generatequizQuestion(){
   }
 
   var currentQuestion = quizQuestions[currentQuestionIndex];
-  console.log("currentQuestion: ", currentQuestion);
   
  questionsEl.textContent = currentQuestion.question;
  buttonA.textContent = currentQuestion.choiceA;
@@ -167,8 +166,6 @@ function generateHighscores() {
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
-  console.log("correct: ", correct);
-  debugger;
 
 
   // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
@@ -226,7 +223,6 @@ function saveScore() {
   highscoreInputName.value = "";
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
 
-  console.log(`Initials: ${initials}, Score: ${timeLeft}`);
 }
 
 
