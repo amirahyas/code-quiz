@@ -14,6 +14,7 @@ var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
 var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
+var currentQuestionIndex = 0;
 
 
 // Quiz questions
@@ -39,7 +40,7 @@ var buttonD = document.getElementById("D");
   choiceB: "booleans",
   choiceC: "numbers",
   choiceD: "alerts",
-  CorrectAnswer: "D"
+  correctAnswer: "D"
 },
 {
   question : "What's the HTML tag for creating an ordered list?",
@@ -47,7 +48,7 @@ var buttonD = document.getElementById("D");
   choiceB: "<ol>",
   choiceC:"<ul>",
   choiceD: "None of the above",
-  correctAnswer: "C"
+  correctAnswer: "B"
 }, 
 {
   question : "String values must be enclosed within ______ when being assigned to variables.",
@@ -75,7 +76,9 @@ function generatequizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
+
   var currentQuestion = quizQuestions[currentQuestionIndex];
+  
  questionsEl.textContent = currentQuestion.question;
  buttonA.textContent = currentQuestion.choiceA;
  buttonB.textContent = currentQuestion.choiceB;
@@ -162,12 +165,10 @@ function generateHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
-  debugger;
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
 
   // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
-  var currentQuestionIndex = 0;
   if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
     score++;
     alert("That is correct!")
@@ -222,7 +223,6 @@ function saveScore() {
   highscoreInputName.value = "";
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
 
-  console.log(`Initials: ${initials}, Score: ${timeLeft}`);
 }
 
 
