@@ -11,40 +11,50 @@
 <body>
   <div class="container">
 
-    <div id="startpage">
+    <div id="startpage" style="border: 2px solid black;">
       <h1>Code Quiz</h1>
-    <button id="startbtn">Start Code Quiz</button>
-    <button id="high-scorepage" onclick="showHighscore()">High Scores</button>
+      <button id="startbtn">Start Code Quiz</button>
+      <button id="high-scorepage" onclick="showHighscore()">High Scores</button>
     </div>
-    <div id="quiz">
+
+    <div id="quiz" style="border: 2px solid red;">
       <div id="timer">Time left: </div>
-         <div id="questionsE1"><p>Questions</p></div>
-            <button id="A" onclick="checkAnswer('A')">A</button>
-             <button id="B" onclick="checkAnswer('B')">B</button>
-             <button id="C" onclick="checkAnswer('C')">C</button>
-             <button id="D" onclick="checkAnswer('D')">D</button>
-          <div id="result"></div>
-  </div>
-        <div id="gameover">
-            <div id="finalscore"></div>
-            <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
-            <button id="submitScore">Submit Score</button>
-        </div>
-        <div id=highscore-page>
+
+      <div id="questionsE1" style="border: 2px dotted green;"><p>Questions</p></div>
+      <div>
+        <button id="A" onclick="checkAnswer('A')">A</button>
+        <button id="B" onclick="checkAnswer('B')">B</button>
+        <button id="C" onclick="checkAnswer('C')">C</button>
+        <button id="D" onclick="checkAnswer('D')">D</button>
+        <div id="result"></div>
+      </div>
+
+      <div id="gameover" style="border: 2px dotted black;">
+        <div id="finalscore"></div>
+        <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
+        <button id="submitScore">Submit Score</button>
+      </div>
+
+      <div id=highscore-page style="border: 2px solid yellow;">
         <div id="highscore-score">
-            <div id="highscore-header">
-                <h2>User Initials</h2>
-                <h2>Score</h2>
-            </div>
-            <div id = "initials"></div>
+          <div id="highscore-header">
+            <h2>User Initials</h2>
+            <h2>Score</h2>
+          </div>
+
+          <div id = "initials"></div>
         </div>
+        
         <div id="endGameBtns">
             <button id="playAgain" onclick="replayQuiz()">Play Again</button>
             <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
             <button id="savescore" onclick="savescore()">Save Score</button>
         </div>
+      </div>
     </div>
-    </div>
-    <script src="fakescript.js"></script>
+
+  </div>
+
+  <script src="fakescript.js"></script>
 </body>
 </html>
