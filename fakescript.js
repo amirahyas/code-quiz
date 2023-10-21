@@ -73,26 +73,17 @@ var correct;
 
 // this function generates questions & answers
 function generatequizQuestion(){
-
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
 
   var currentQuestion = quizQuestions[currentQuestionIndex];
   
- questionsEl.textContent = currentQuestion.question;
- buttonA.textContent = currentQuestion.choiceA;
- buttonB.textContent = currentQuestion.choiceB;
- buttonC.textContent = currentQuestion.choiceC;
-
- buttonD.textContent = currentQuestion.choiceD;
-
-  // // Amirah, the line below is undefined. 
-  // questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
-  // buttonA.innerHTML = currentQuestion.choiceA;
-  // buttonB.innerHTML = currentQuestion.choiceB;
-  // buttonC.innerHTML = currentQuestion.choiceC;
-  // buttonD.innerHTML = currentQuestion.choiceD;
+  questionsEl.textContent = currentQuestion.question;
+  buttonA.textContent = currentQuestion.choiceA;
+  buttonB.textContent = currentQuestion.choiceB;
+  buttonC.textContent = currentQuestion.choiceC;
+  buttonD.textContent = currentQuestion.choiceD;
 };
 
 
@@ -170,23 +161,9 @@ function generateHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
+  debugger;
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
-}
-function checkAnswerA() {
-  checkAnswer('A');
-}
-function checkAnswerB() {
-  checkAnswer('B');
-}
-function checkAnswerC() {
-  checkAnswer('C');
-}
-function checkAnswerD() {
-  checkAnswer('D');
 
-
-
-  // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
   if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
     score++;
     alert("That is correct!")
@@ -200,8 +177,7 @@ function checkAnswerD() {
   } else{
     showScore();
   }
-};
-
+}
 
 // this function times quiz out
     function endQuiz() {
@@ -248,13 +224,15 @@ function saveScore() {
 startQuizButton.addEventListener("click", startQuiz);
 submitScoreButton.addEventListener("click", submitScore);
 saveScoreButton.addEventListener("click", saveScore);
-buttonA.addEventListener("click", checkAnswer('A'));
-buttonB.addEventListener("click", checkAnswer ('B'));
-buttonC.addEventListener("click", checkAnswer ('C'));
-buttonD.addEventListener("click", checkAnswer('D'));
+buttonA.addEventListener("click", function () { checkAnswer('A'); });
+buttonB.addEventListener("click", function () { checkAnswer('B'); });
+buttonC.addEventListener("click", function () { checkAnswer('C'); });
+buttonD.addEventListener("click", function () { checkAnswer('D'); });
+
+
 
 function init() {
-  questionscontainer.style.display = "none";
+  questioncontainer.style.display = "none";
 }
 
 init();
