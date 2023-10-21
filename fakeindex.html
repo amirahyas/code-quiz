@@ -11,16 +11,16 @@
 <body>
   <div class="container">
 
-    <div id="startpage" style="border: 2px solid black;">
+    <div id="startpage">
       <h1>Code Quiz</h1>
       <button id="startbtn">Start Code Quiz</button>
       <button id="high-scorepage" onclick="showHighscore()">High Scores</button>
     </div>
 
-    <div id="quiz" style="border: 2px solid red;">
+    <div id="quiz">
       <div id="timer">Time left: </div>
 
-      <div id="questionsEl" style="border: 2px dotted green;"><p>Questions</p></div>
+      <div id="questionsE1"><p>Questions</p></div>
       <div>
         <button id="A" onclick="checkAnswer('A')">A</button>
         <button id="B" onclick="checkAnswer('B')">B</button>
@@ -29,13 +29,13 @@
         <div id="result"></div>
       </div>
 
-      <div id="gameover" style="border: 2px dotted black;">
-        <div id="finalScoreEl"></div>
+      <div id="gameover">
+        <div id="finalScore"></div>
         <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
         <button id="submitScore">Submit Score</button>
       </div>
 
-      <div id=highscore-page style="border: 2px solid yellow;">
+      <div id="highscore-page">
         <div id="highscore-score">
           <div id="highscore-header">
             <h2>User Initials</h2>
