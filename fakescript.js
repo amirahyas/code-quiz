@@ -230,3 +230,7 @@ function saveScore() {
 startQuizButton.addEventListener("click", startQuiz);
 submitScoreButton.addEventListener("click", submitScore);
 saveScoreButton.addEventListener("click", saveScore);
+buttonA.addEventListener("click", function () { checkAnswer('A'); });
+buttonB.addEventListener("click", function () { checkAnswer('B'); });
+buttonC.addEventListener("click", function () { checkAnswer('C'); });
+buttonD.addEventListener("click", function () { checkAnswer('D'); });
