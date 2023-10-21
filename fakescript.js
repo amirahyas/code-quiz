@@ -1,14 +1,15 @@
 var quizBody = document.getElementById("quiz");
 var startQuizDiv = document.getElementById("startpage");
-var highscoreContainer = document.getElementById("highscore-page");
+var highscoreDiv = document.getElementById("highscore-page");
 var startQuizButton = document.getElementById("startbtn");
 var submitScoreButton = document.getElementById("submitScore");
 var finalScoreEl = document.getElementById("finalScore");
 var highscoreInputName = document.getElementById("initials");
 var highscoreDisplayScore = document.getElementById("highscore-score");
+var highscoreDisplayName = document.getElementById ("highscore-initials")
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("questionsE1");
+var questionsEl = document.getElementById("quizQuestions");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -63,7 +64,6 @@ var currentQuestionIndex = 0;
 
 // global variables
 var finalQuestionIndex = quizQuestions.length;
-var currentQuestionIndex = 0;
 var timeLeft = 70; // initial time
 var timerInterval;
 var score = 0;
@@ -83,6 +83,7 @@ function generatequizQuestion(){
  buttonA.textContent = currentQuestion.choiceA;
  buttonB.textContent = currentQuestion.choiceB;
  buttonC.textContent = currentQuestion.choiceC;
+
  buttonD.textContent = currentQuestion.choiceD;
 
   // // Amirah, the line below is undefined. 
@@ -151,6 +152,8 @@ submitScoreButton.addEventListener("click", function highscore() {
 
 function generateHighscores() {
   const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+  highscoreDisplayScore.innerHTML = "";
+  highscoreDisplayName.innerHTML = "";
  for (var i = 0; i < savedHighscores.length; i++) {
   var newScoreSpan = document.createElement("li");
   var newNameSpan = document.createElement("li");
@@ -166,6 +169,19 @@ function generateHighscores() {
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
+}
+function checkAnswerA() {
+  checkAnswer('A');
+}
+function checkAnswerB() {
+  checkAnswer('B');
+}
+function checkAnswerC() {
+  checkAnswer('C');
+}
+function checkAnswerD() {
+  checkAnswer('D');
+
 
 
   // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
