@@ -3,13 +3,12 @@ var startQuizDiv = document.getElementById("startpage");
 var highscoreContainer = document.getElementById("highscore-page");
 var startQuizButton = document.getElementById("startbtn");
 var submitScoreButton = document.getElementById("submitScore");
-var initialsInput = document.getElementById("initials");
-var finalScoreE1 = document.getElementById("finalScore");
+var finalScoreEl = document.getElementById("finalScore");
 var highscoreInputName = document.getElementById("initials");
 var highscoreDisplayScore = document.getElementById("highscore-score");
 var gameoverDiv = document.getElementById("gameover");
 var quizTimer = document.getElementById ("timer");
-var questionsE1 = document.getElementById("questionsE1");
+var questionsEl = document.getElementById("questionsE1");
 var saveScoreButton = document.getElementById("savescore");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
@@ -40,9 +39,7 @@ var buttonD = document.getElementById("D");
   choiceB: "booleans",
   choiceC: "numbers",
   choiceD: "alerts",
-  answer: "D"
-
-  // Amirah, add a correctAnswer here.
+  CorrectAnswer: "D"
 },
 {
   question : "What's the HTML tag for creating an ordered list?",
@@ -79,13 +76,18 @@ function generatequizQuestion(){
     return showScore();
   }
   var currentQuestion = quizQuestions[currentQuestionIndex];
+ questionsEl.textContent = currentQuestion.question;
+ buttonA.textContent = currentQuestion.choiceA;
+ buttonB.textContent = currentQuestion.choiceB;
+ buttonC.textContent = currentQuestion.choiceC;
+ buttonD.textContent = currentQuestion.choiceD;
 
-  // Amirah, the line below is undefined. 
-  questionsE1.innerHTML = "<p>" + currentQuestion.question + "</p>";
-  buttonA.innerHTML = currentQuestion.choiceA;
-  buttonB.innerHTML = currentQuestion.choiceB;
-  buttonC.innerHTML = currentQuestion.choiceC;
-  buttonD.innerHTML = currentQuestion.choiceD;
+  // // Amirah, the line below is undefined. 
+  // questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
+  // buttonA.innerHTML = currentQuestion.choiceA;
+  // buttonB.innerHTML = currentQuestion.choiceB;
+  // buttonC.innerHTML = currentQuestion.choiceC;
+  // buttonD.innerHTML = currentQuestion.choiceD;
 };
 
 
@@ -146,12 +148,14 @@ submitScoreButton.addEventListener("click", function highscore() {
 
 function generateHighscores() {
   const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+ for (var i = 0; i < savedHighscores.length; i++) {
   var newScoreSpan = document.createElement("li");
   var newNameSpan = document.createElement("li");
   newScoreSpan.textContent = highscores[i].score;
   newNameSpan.textContent = highscores[i].name;
   highscoreDisplayName.appendChild(newNameSpan);
   highscoreDisplayScore.appendChild(newScoreSpan);
+}
 
 }
 
@@ -163,11 +167,12 @@ function checkAnswer(selectedAnswer) {
 
 
   // Amirah, where is quizQuestionsIndex declared.  This variable does not exist.  Therefore, it cannot be called.
-  if (selectedAnswer === correct && quizQuestionsIndex !== finalQuestionIndex){ 
+  var currentQuestionIndex = 0;
+  if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
     score++;
     alert("That is correct!")
     currentQuestionIndex++;
-    generatequizQuestions();
+    generatequizQuestion();
   
   } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
     alert("That Is Incorrect.")
@@ -187,15 +192,14 @@ function checkAnswer(selectedAnswer) {
 }
 
 
-// this function displays gih score page
+// this function displays high score page
 function showHighscore(){
   startQuizDiv.style.display = "none"
   gameoverDiv.style.display = "none";
   highscoreContainer.style.display = "flex";
-  highscoreDiv.style.display = "block";
+  highscoreDisplayScore.style.display = "block";
   endGameBtns.style.display = "flex";
-
-  generateHighscore();
+  generateHighscores();
 }
 
 
@@ -204,7 +208,7 @@ function replayQuiz(){
   highscoreContainer.style.display = "none";
   gameoverDiv.style.display = "none";
   startQuizDiv.style.display = "flex";
-  timeLeft = 76;
+  timeLeft = 70;
   score = 0;
   currentQuestionIndex = 0;
 }
@@ -216,7 +220,7 @@ function saveScore() {
   gameoverDiv.style.display ="flex"
   clearInterval (timerInterval);
   highscoreInputName.value = "";
-  finalScoreE1.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
+  finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
 
   console.log(`Initials: ${initials}, Score: ${timeLeft}`);
 }
