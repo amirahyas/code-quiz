@@ -97,7 +97,7 @@ function startQuizDiv() {
   questionscontainer.style.display = "block";
   startQuizDiv.style.display = "none";
   gameoverDiv.style.display = "none";
-  generatequizQuestion();
+  generateQuizQuestion();
 
   // timer
   timerInterval = setInterval(function() {
