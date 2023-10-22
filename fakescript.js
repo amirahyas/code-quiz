@@ -174,6 +174,7 @@ function checkAnswer(selectedAnswer) {
     alert("That Is Incorrect.")
     currentQuestionIndex++;
     timeLeft -= 10; // Time penalty for incorrect answer
+    generatequizQuestion()
   } else{
     showScore();
   }
@@ -232,7 +233,7 @@ buttonD.addEventListener("click", function () { checkAnswer('D'); });
 
 
 function init() {
-  questioncontainer.style.display = "none";
-}
+  questionscontainer.style.display = "none";
+} 
 
 init();
