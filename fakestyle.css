@@ -48,7 +48,7 @@ button {
     background-color: #99246c;
 }
 
-#question-container {
+#questionscontainer {
     text-align: left;
     padding: 20px;
     border: 1px solid #ccc;
@@ -72,16 +72,16 @@ li {
     color: #333;
 }
 
-#timer {
+#quizTimer {
     font-size: 18px;
 }
 
-#submit-score {
+#submitScoreButton {
     display: none;
     background-color: #474947;
 }
 
-#initials {
+#highscoreInputName {
     display: none;
     padding: 10px;
 }
@@ -120,7 +120,7 @@ button:hover{
     box-shadow: 4px 3px 6px #4450bd;
 }
 
-#save-score {
+#savedHighscores {
     display: none;
     background-color: #474947;  
 }
