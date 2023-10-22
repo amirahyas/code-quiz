@@ -1,16 +1,20 @@
-var quizBody = document.getElementById("quiz");
-var startQuizDiv = document.getElementById("startpage");
-var highscoreDiv = document.getElementById("highscore-page");
-var startQuizButton = document.getElementById("startbtn");
-var submitScoreButton = document.getElementById("submitScore");
-var finalScoreEl = document.getElementById("finalScore");
-var highscoreInputName = document.getElementById("initials");
-var highscoreDisplayScore = document.getElementById("highscore-score");
-var highscoreDisplayName = document.getElementById ("highscore-initials")
-var gameoverDiv = document.getElementById("gameover");
-var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("questions");
-var saveScoreButton = document.getElementById("savescore");
+var quizBody = document.getElementById("quizBody");
+var startQuizDiv = document.getElementById("startQuizDiv");
+var highscoreDiv = document.getElementById("highscoreDiv");
+var startQuizButton = document.getElementById("startQuizButton");
+var submitScoreButton = document.getElementById("submitScoreButton");
+var finalScoreEl = document.getElementById("finalScoreEl");
+var highscoreInputName = document.getElementById("highscoreInputName");
+var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
+var highscoreDisplayName = document.getElementById ("highscoreDisplayName")
+var highscoreContainer = document.getElementById ("highscoreContainer");
+var initials = document.getElementById ("initials");
+var endGameBtns = document.getElementById ("endGameBtns");
+var endQuiz = document.getElementById ("endQuiz")
+var gameoverDiv = document.getElementById("gameoverDiv");
+var quizTimer = document.getElementById ("quizTimer");
+var questionsEl = document.getElementById("questionsEl");
+var savedHighscores = document.getElementById("savedHighscores");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
 var buttonC = document.getElementById("C");
@@ -72,7 +76,7 @@ var correct;
 
 
 // this function generates questions & answers
-function generatequizQuestion(){
+function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
     return showScore();
   }
@@ -88,7 +92,7 @@ function generatequizQuestion(){
 
 
 // start quiz starts the timer & displays first question
-function startQuiz() {
+function startQuizDiv() {
 
   questionscontainer.style.display = "block";
   startQuizDiv.style.display = "none";
@@ -115,14 +119,11 @@ function showScore(){
   gameoverDiv.style.display = "flex";
   clearInterval(timerInterval);
   highscoreInputName.value = "";
-
-  // Amirah, the line below is undefined. You need to create the finalScoreE1 element in the html.
-  finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
 
 // click button to show high scores
-submitScoreButton.addEventListener("click", function highscore() {
+submitScoreButton.addEventListener("click", function savedHighscores() {
   if(highscoreInputName.value === "") {
     alert("Initials cannot be blank");
     return false;
@@ -143,15 +144,15 @@ submitScoreButton.addEventListener("click", function highscore() {
 });
 
 
-function generateHighscores() {
+function generatesavedHighscores() {
   const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
   highscoreDisplayScore.innerHTML = "";
   highscoreDisplayName.innerHTML = "";
  for (var i = 0; i < savedHighscores.length; i++) {
   var newScoreSpan = document.createElement("li");
   var newNameSpan = document.createElement("li");
-  newScoreSpan.textContent = highscores[i].score;
-  newNameSpan.textContent = highscores[i].name;
+  newScoreSpan.textContent = savedHighscores[i].score;
+  newNameSpan.textContent = savedHighscores[i].name;
   highscoreDisplayName.appendChild(newNameSpan);
   highscoreDisplayScore.appendChild(newScoreSpan);
 }
@@ -161,7 +162,7 @@ function generateHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
-  debugger;
+ 
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
   if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
@@ -181,15 +182,13 @@ function checkAnswer(selectedAnswer) {
 }
 
 // this function times quiz out
-    function endQuiz() {
-      clearInterval(timerInterval);
-      questionContainer.innerHTML = "Quiz over!";
-      submitScoreButton.style.display = "block";
+function endQuiz() {
+  clearInterval(timerInterval);
+  questionscontainer.innerHTML = "Quiz over!";
+  submitScoreButton.style.display = "block";
 }
-
-
 // this function displays high score page
-function showHighscore(){
+function generateHighscores(){
   startQuizDiv.style.display = "none"
   gameoverDiv.style.display = "none";
   highscoreContainer.style.display = "flex";
@@ -211,20 +210,26 @@ function replayQuiz(){
 
 
 // function saves user intials and score
-function saveScore() {
-  quizBody.style.display = "none"
-  gameoverDiv.style.display ="flex"
-  clearInterval (timerInterval);
-  highscoreInputName.value = "";
-  finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
+function submitScore() {
+var initials = highscoreInputName.value.trim(); // Get user initials
+    if (initials === "") {
+      alert("Initials cannot be blank");
+      return false;
+    } else {
+      // ... (your existing code for saving score)
 
+      // Save initials along with the score
+      var currentHighscore = {
+          name: initials,
+          submitScore: score
+      }      
+   }
 }
 
-
 // event listeners for buttons
-startQuizButton.addEventListener("click", startQuiz);
+startQuizButton.addEventListener("click", startQuizDiv);
 submitScoreButton.addEventListener("click", submitScore);
-saveScoreButton.addEventListener("click", saveScore);
+savedHighscores.addEventListener("click", saveScore);
 buttonA.addEventListener("click", function () { checkAnswer('A'); });
 buttonB.addEventListener("click", function () { checkAnswer('B'); });
 buttonC.addEventListener("click", function () { checkAnswer('C'); });
@@ -237,3 +242,27 @@ function init() {
 } 
 
 init();
+
+/* var quizBody = document.getElementById("quiz");
+var startQuizDiv = document.getElementById("startpage");
+var highscoreDiv = document.getElementById("highscore-page");
+var startQuizButton = document.getElementById("startbtn");
+var submitScoreButton = document.getElementById("submitScore");
+var finalScoreEl = document.getElementById("finalScore");
+var highscoreInputName = document.getElementById("initials");
+var highscoreDisplayScore = document.getElementById("highscore-score");
+var highscoreDisplayName = document.getElementById ("highscore-initials")
+var highscoreContainer = document.getElementById ("highscoreContainer")
+var Username = document.getElementById ("Username")
+var endGameBtns = document.getElementById ("endGameBtns")
+var endQuiz = document.getElementById ("endQuiz")
+var gameoverDiv = document.getElementById("gameover");
+var quizTimer = document.getElementById ("timer");
+var questionsEl = document.getElementById("questions");
+var savedHighscores = document.getElementById("savescore"); */
+
+  // quizBody.style.display = "none"
+  // gameoverDiv.style.display ="flex"
+  // clearInterval (timerInterval);
+  // highscoreInputName.value = "";
+  // finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"

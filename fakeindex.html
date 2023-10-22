@@ -11,16 +11,16 @@
 <body>
   <div class="container">
 
-    <div id="startpage">
+    <div id="startQuizDiv">
       <h1>Code Quiz</h1>
-      <button id="startbtn">Start Code Quiz</button>
-      <button id="high-scorepage" onclick="showHighscore()">High Scores</button>
+      <button id="startQuizButton">Start Code Quiz</button>
+      <button id="savedHighscores" onclick="showHighscore()">High Scores</button>
     </div>
 
-    <div id="quiz">
-      <div id="timer">Time left: </div>
+    <div id="quizBody">
+      <div id="quizTimer">Time left: </div>
 
-      <div id="questions"><p>Questions</p></div>
+      <div id="questionsEl"><p>Questions</p></div>
       <div id="questionscontainer" >
         <button id="A"></button>
         <button id="B"></button>
@@ -28,29 +28,27 @@
         <button id="D"></button>
         <div id="result"></div>
       </div>
-      <input type="text" id="initials" placeholder="Enter your initials">
-
-      <div id="gameover">
-        <div id="finalScore"
+      <div id="gameoverDiv">
+        <div id="finalScoreEl"
         ></div>
-        <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
+        <input type="text" size = "40" placeholder="Enter you initials for high score" id="initials"/>
         <button id="submitScore">Submit Score</button>
       </div>
 
-      <div id=highscore-page>
-        <div id="highscore-score">
+      <div id=highscoreDiv>
+        <div id="highscoreDisplayScore">
           <div id="highscore-header">
             <h2>User Initials</h2>
             <h2>Score</h2>
           </div>
 
-          <div id = "initials"></div>
+          <div id = "hishscoreDisplayName"></div>
         </div>
         
         <div id="endGameBtns">
             <button id="playAgain" onclick="replayQuiz()">Play Again</button>
             <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
-            <button id="savescore" onclick="savescore()">Save Score</button>
+            <button id="saveScore" onclick="savescore()">Save Score</button>
         </div>
       </div>
     </div>
