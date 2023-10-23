@@ -20,6 +20,7 @@ var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
 var highscoreDisplayName = document.getElementById ("highscoreDisplayName");
 var highScoreHeader = document.getElementById ("highScoreHeader");
 
+var highscoreInputName =
 
 // initials - refers to the input user logs initials.
 var initials = document.getElementById ("initials");
@@ -102,7 +103,7 @@ var currentQuestionIndex = 0;
 // this function generates questions & answers
 function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
-    return showHighScore();
+    return showScore();
   }
   var currentQuestion = quizQuestions[currentQuestionIndex];
   
@@ -129,7 +130,7 @@ function startQuiz() {
 
     if(timeLeft === 0) {
       clearInterval(timerInterval);
-      return showHighScore();
+      return showScore();
     }
   }, 1000);
   quizBody.style.display = "block";
@@ -256,27 +257,3 @@ function init() {
 } 
 
 init();
-
-/* var quizBody = document.getElementById("quiz");
-var startQuizDiv = document.getElementById("startpage");
-var highscoreDiv = document.getElementById("highscore-page");
-var startQuizButton = document.getElementById("startbtn");
-var submitScoreButton = document.getElementById("submitScore");
-var finalScoreEl = document.getElementById("finalScore");
-var highscoreInputName = document.getElementById("initials");
-var highscoreDisplayScore = document.getElementById("highscore-score");
-var highscoreDisplayName = document.getElementById ("highscore-initials")
-var highscoreContainer = document.getElementById ("highscoreContainer")
-var Username = document.getElementById ("Username")
-var endGameBtns = document.getElementById ("endGameBtns")
-var endQuiz = document.getElementById ("endQuiz")
-var gameoverDiv = document.getElementById("gameover");
-var quizTimer = document.getElementById ("timer");
-var questionsEl = document.getElementById("questions");
-var savedHighscores = document.getElementById("savescore"); */
-
-  // quizBody.style.display = "none"
-  // gameoverDiv.style.display ="flex"
-  // clearInterval (timerInterval);
-  // highscoreInputName.value = "";
-  // finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!"
