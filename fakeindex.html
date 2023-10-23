@@ -14,7 +14,7 @@
     <div id="startQuizDiv">
       <h1>Code Quiz</h1>
       <button id="startQuizButton">Start Code Quiz</button>
-      <button id="savedHighscores" onclick="showHighscore()">High Scores</button>
+      <button id="savedHighscores" onclick="showHighScore()">High Scores</button>
     </div>
 
     <div id="quizBody">
@@ -29,6 +29,7 @@
         <div id="result"></div>
       </div>
       <div id="gameoverDiv">
+
         <div id="finalScoreEl"
         ></div>
         <input type="text" size = "40" placeholder="Enter you initials for high score" id="initials"/>
@@ -36,19 +37,21 @@
       </div>
 
       <div id=highscoreDiv>
+        <div id="savedHighscores">  
+        </div>
         <div id="highscoreDisplayScore">
           <div id="highscore-header">
             <h2>User Initials</h2>
             <h2>Score</h2>
           </div>
 
-          <div id = "hishscoreDisplayName"></div>
+          <div id = "highscoreDisplayName"></div>
         </div>
         
         <div id="endGameBtns">
             <button id="playAgain" onclick="replayQuiz()">Play Again</button>
-            <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
-            <button id="saveScore" onclick="savescore()">Save Score</button>
+            <button id="clearHighscore" onclick="clearScore">Clear Highscores</button>
+            <button id="savedHighscores" onclick="savescore()">Save Score</button>
         </div>
       </div>
     </div>

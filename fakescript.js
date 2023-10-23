@@ -1,27 +1,50 @@
+// refers to quizBody div.
 var quizBody = document.getElementById("quizBody");
+
+// variables that manipulate the startquizdiv, startquizbutton, savedhighscores (function).
 var startQuizDiv = document.getElementById("startQuizDiv");
-var highscoreDiv = document.getElementById("highscoreDiv");
 var startQuizButton = document.getElementById("startQuizButton");
-var submitScoreButton = document.getElementById("submitScoreButton");
-var finalScoreEl = document.getElementById("finalScoreEl");
-var highscoreInputName = document.getElementById("highscoreInputName");
-var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
-var highscoreDisplayName = document.getElementById ("highscoreDisplayName")
-var highscoreContainer = document.getElementById ("highscoreContainer");
-var initials = document.getElementById ("initials");
-var endGameBtns = document.getElementById ("endGameBtns");
-var endQuiz = document.getElementById ("endQuiz")
-var gameoverDiv = document.getElementById("gameoverDiv");
-var quizTimer = document.getElementById ("quizTimer");
-var questionsEl = document.getElementById("questionsEl");
 var savedHighscores = document.getElementById("savedHighscores");
+savedHighscores.addEventListener("click", savedHighscores);
+
+// submitScoreButton- a button for submitting the score.
+var submitScoreButton = document.getElementById("submitScoreButton");
+
+// efinalscoreEl is an element which contains the final score.
+var finalScoreEl = document.getElementById("finalScoreEl");
+
+
+// highscoreDiv refers tot he div that holds the high score display & the header.
+var highscoreDiv = document.getElementById("highscoreDiv");
+var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
+var highscoreDisplayName = document.getElementById ("highscoreDisplayName");
+var highScoreHeader = document.getElementById ("highScoreHeader");
+
+
+// initials - refers to the input user logs initials.
+var initials = document.getElementById ("initials");
+
+var endGameBtns = document.getElementById ("endGameBtns");
+
+// refers to gameoverDiv.
+var gameoverDiv = document.getElementById("gameoverDiv");
+
+// quizTimer - displays amount of time remaining.
+var quizTimer = document.getElementById ("quizTimer");
+
+// questionsEl - refers to the question element.
+var questionsEl = document.getElementById("questionsEl");
+
+var showHighScore = document.getElementById("showHighScore");
+
+// questionscontainer- refers to questions container. This container has buttons for A,B,C,D and results.
+var questionscontainer = document.getElementById("questionscontainer");
 var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
 var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
-var currentQuestionIndex = 0;
-
-var questionscontainer = document.getElementById("questionscontainer");
+// add result id to html
+var result = document.getElementById("result"); 
 
 // Quiz questions
  var quizQuestions = [{
@@ -73,14 +96,14 @@ var timeLeft = 70; // initial time
 var timerInterval;
 var score = 0;
 var correct;
-
+// add currentQuestionIndex to html
+var currentQuestionIndex = 0; 
 
 // this function generates questions & answers
 function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex){
-    return showScore();
+    return showHighScore();
   }
-
   var currentQuestion = quizQuestions[currentQuestionIndex];
   
   questionsEl.textContent = currentQuestion.question;
@@ -92,34 +115,33 @@ function generateQuizQuestion(){
 
 
 // start quiz starts the timer & displays first question
-function startQuizDiv() {
-
+function startQuiz() {
   questionscontainer.style.display = "block";
   startQuizDiv.style.display = "none";
   gameoverDiv.style.display = "none";
   generateQuizQuestion();
 
   // timer
+
   timerInterval = setInterval(function() {
     timeLeft--;
     quizTimer.textContent = "Time left: " + timeLeft;
 
     if(timeLeft === 0) {
       clearInterval(timerInterval);
-      return showScore();
+      return showHighScore();
     }
   }, 1000);
   quizBody.style.display = "block";
 }
-
-
-// Function to show final score page
-function showScore(){
+function showHighScore() {
   quizBody.style.display = "none"
   gameoverDiv.style.display = "flex";
   clearInterval(timerInterval);
   highscoreInputName.value = "";
+  finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
+
 
 
 // click button to show high scores
@@ -162,30 +184,23 @@ function generatesavedHighscores() {
 
 // Function to check selected answer
 function checkAnswer(selectedAnswer) {
- 
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
   if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
     score++;
     alert("That is correct!")
     currentQuestionIndex++;
-    generatequizQuestion();
+    generateQuizQuestion();
   
   } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
     alert("That Is Incorrect.")
     currentQuestionIndex++;
     timeLeft -= 10; // Time penalty for incorrect answer
-    generatequizQuestion()
+    generateQuizQuestion()
   } else{
     showScore();
   }
-}
 
-// this function times quiz out
-function endQuiz() {
-  clearInterval(timerInterval);
-  questionscontainer.innerHTML = "Quiz over!";
-  submitScoreButton.style.display = "block";
 }
 // this function displays high score page
 function generateHighscores(){
@@ -211,7 +226,7 @@ function replayQuiz(){
 
 // function saves user intials and score
 function submitScore() {
-var initials = highscoreInputName.value.trim(); // Get user initials
+  var initials = highscoreInputName.value.trim(); // Get user initials
     if (initials === "") {
       alert("Initials cannot be blank");
       return false;
@@ -227,9 +242,8 @@ var initials = highscoreInputName.value.trim(); // Get user initials
 }
 
 // event listeners for buttons
-startQuizButton.addEventListener("click", startQuizDiv);
+startQuizButton.addEventListener("click", startQuiz);
 submitScoreButton.addEventListener("click", submitScore);
-savedHighscores.addEventListener("click", saveScore);
 buttonA.addEventListener("click", function () { checkAnswer('A'); });
 buttonB.addEventListener("click", function () { checkAnswer('B'); });
 buttonC.addEventListener("click", function () { checkAnswer('C'); });
