@@ -20,7 +20,7 @@ var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
 var highscoreDisplayName = document.getElementById ("highscoreDisplayName");
 var highScoreHeader = document.getElementById ("highScoreHeader");
 
-var highscoreInputName =
+var highscoreInputName = document.getElementById("highscoreInputName")
 
 // initials - refers to the input user logs initials.
 var initials = document.getElementById ("initials");
@@ -102,11 +102,9 @@ var currentQuestionIndex = 0;
 
 // this function generates questions & answers
 function generateQuizQuestion(){
-  if (currentQuestionIndex===finalQuestionIndex){
-    return showScore();
-  }
+  if (currentQuestionIndex===finalQuestionIndex)
   var currentQuestion = quizQuestions[currentQuestionIndex];
-  
+  showScore()
   questionsEl.textContent = currentQuestion.question;
   buttonA.textContent = currentQuestion.choiceA;
   buttonB.textContent = currentQuestion.choiceB;
@@ -130,7 +128,7 @@ function startQuiz() {
 
     if(timeLeft === 0) {
       clearInterval(timerInterval);
-      return showScore();
+      showScore();
     }
   }, 1000);
   quizBody.style.display = "block";
