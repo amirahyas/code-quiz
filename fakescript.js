@@ -98,20 +98,25 @@ var timeLeft = 70; // initial time
 var timerInterval;
 var score = 0;
 var correct;
-// add currentQuestionIndex to html
 var currentQuestionIndex = 0; 
 
 // this function generates questions & answers
 function generateQuizQuestion(){
-  if (currentQuestionIndex===finalQuestionIndex) {
-  showScore();
- }
- var currentQuestion = quizQuestions[currentQuestionIndex]; 
+
+  if (currentQuestionIndex===finalQuestionIndex)
+  {
+    showScore();
+  }
+    var currentQuestion = quizQuestions[currentQuestionIndex]; 
+  
+  if (currentQuestion !== undefined) {
+
   questionsEl.textContent = currentQuestion.question;
   buttonA.textContent = currentQuestion.choiceA;
   buttonB.textContent = currentQuestion.choiceB;
   buttonC.textContent = currentQuestion.choiceC;
   buttonD.textContent = currentQuestion.choiceD;
+  }
   
 };
 
@@ -137,11 +142,15 @@ function startQuiz() {
   quizBody.style.display = "block";
 }
 function showScore() {
+  console.log("show score called")
   quizBody.style.display = "none"
   gameoverDiv.style.display = "flex";
   clearInterval(timerInterval);
   highscoreInputName.value = "";
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+  // added lines below
+  finalScoreEl.style.display = "block"; // Show finalScoreEl
+  initials.style.display = "block"; // Show initials
   
 }
 
@@ -170,10 +179,10 @@ submitScoreButton.addEventListener("click", function savedHighscores() {
 
 
 function generatesavedHighscores() {
-  const savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+  var savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
   highscoreDisplayScore.innerHTML = "";
   highscoreDisplayName.innerHTML = "";
- for (var i = 0; i < savedHighscores.length; i++) {
+ for (i = 0; i < savedHighscores.length; i++) {
   var newScoreSpan = document.createElement("li");
   var newNameSpan = document.createElement("li");
   newScoreSpan.textContent = savedHighscores[i].score;
