@@ -20,6 +20,7 @@ var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
 var highscoreDisplayName = document.getElementById ("highscoreDisplayName");
 var highScoreHeader = document.getElementById ("highScoreHeader");
 
+// user logs name 
 var highscoreInputName = document.getElementById("highscoreInputName")
 
 // initials - refers to the input user logs initials.
@@ -139,6 +140,7 @@ function showScore() {
   clearInterval(timerInterval);
   highscoreInputName.value = "";
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+  
 }
 
 
