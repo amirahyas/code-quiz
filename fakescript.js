@@ -104,15 +104,15 @@ var currentQuestionIndex = 0;
 // this function generates questions & answers
 function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex) {
-  var currentQuestion = quizQuestions[currentQuestionIndex];
-  showScore()
+  showScore();
+ }
+ var currentQuestion = quizQuestions[currentQuestionIndex]; {
   questionsEl.textContent = currentQuestion.question;
   buttonA.textContent = currentQuestion.choiceA;
   buttonB.textContent = currentQuestion.choiceB;
   buttonC.textContent = currentQuestion.choiceC;
   buttonD.textContent = currentQuestion.choiceD;
   
-  }
 };
 
 
