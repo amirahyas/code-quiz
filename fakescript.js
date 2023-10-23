@@ -134,7 +134,7 @@ function startQuiz() {
   }, 1000);
   quizBody.style.display = "block";
 }
-function showHighScore() {
+function showScore() {
   quizBody.style.display = "none"
   gameoverDiv.style.display = "flex";
   clearInterval(timerInterval);
