@@ -103,7 +103,7 @@ var currentQuestionIndex = 0;
 
 // this function generates questions & answers
 function generateQuizQuestion(){
-  if (currentQuestionIndex===finalQuestionIndex)
+  if (currentQuestionIndex===finalQuestionIndex) {
   var currentQuestion = quizQuestions[currentQuestionIndex];
   showScore()
   questionsEl.textContent = currentQuestion.question;
@@ -111,6 +111,8 @@ function generateQuizQuestion(){
   buttonB.textContent = currentQuestion.choiceB;
   buttonC.textContent = currentQuestion.choiceC;
   buttonD.textContent = currentQuestion.choiceD;
+  
+  }
 };
 
 
@@ -210,7 +212,6 @@ function generateHighscores(){
   highscoreContainer.style.display = "flex";
   highscoreDisplayScore.style.display = "block";
   endGameBtns.style.display = "flex";
-  generateHighscores();
 }
 
 
