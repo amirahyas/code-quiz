@@ -106,7 +106,7 @@ function generateQuizQuestion(){
   if (currentQuestionIndex===finalQuestionIndex) {
   showScore();
  }
- var currentQuestion = quizQuestions[currentQuestionIndex]; {
+ var currentQuestion = quizQuestions[currentQuestionIndex]; 
   questionsEl.textContent = currentQuestion.question;
   buttonA.textContent = currentQuestion.choiceA;
   buttonB.textContent = currentQuestion.choiceB;
