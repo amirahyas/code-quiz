@@ -18,48 +18,43 @@
     </div>
 
     <div id="quizBody">
-      <div id="quizTimer">Time left: </div>
-      <!-- added lower line -->
-      <div id="currentQuestionIndex">1</span> of 5</div>
-
-      <div id="questionsEl"><p>Questions</p></div>
-      <div id="questionscontainer" >
-        <button id="A"></button>
-        <button id="B"></button>
-        <button id="C"></button>
-        <button id="D"></button>
-        <div id="result"></div>
-    
-      
-      </div>
-      <div id="gameoverDiv">
-
-        <div id="finalScoreEl"
-        ></div>
-        <input type="text" size = "40" placeholder="Enter you initials for high score" id="initials"/>
-        <button id="submitScoreButton">Submit Score</button>
-      </div>
-
-      <div id=highscoreDiv>
-        <div id="savedHighscores">  
-        </div>
-        <div id="highscoreDisplayScore">
-          <div id="highscoreHeader">
-            <h2>User Initials</h2>
-            <h2>Score</h2>
+      <div id="quizTimer">Time left: 70s</div>
+        <div id="currentQuestionIndex">1</span> of 5</div>
+        <div id="questionsEl"><p>Questions</p></div>
+          <div id="questionscontainer">
+            <button id="A" class="hidden"></button>
+            <button id="B" class="hidden"></button>
+            <button id="C" class="hidden"></button>
+            <button id="D" class="hidden"></button>
           </div>
-
-          <div id = "highscoreInputName"></div>
-        </div>
+          
         
-        <div id="endGameBtns">
-            <button id="playAgain" onclick="replayQuiz()">Play Again</button>
-            <button id="clearHighscore" onclick="clearScore">Clear Highscores</button>
-            <button id="savedHighscores" onclick="savescore()">Save Score</button>
-        </div>
-      </div>
+        <div id="result"></div>
+    </div>
+      
+    <div id="gameoverDiv">
+
+      <div id="finalScoreEl"></div>
+      <input type="text" size = "40" placeholder="Enter you initials for high score" name="initials" id="initialsbox"/>
+      <button id="submitScoreButton" style="display: block;">Submit Score</button>
     </div>
 
+    <div id=highscoreDiv> 
+            <div id="highscoreContainer">
+            <div id="highscoreDisplayScore">
+              <div id="highscoreHeader">
+                <h2>User Initials</h2>
+                <h3>Score</h3>
+              </div>
+
+              <div id = "highscoreInputName"></div>
+          </div>
+        
+      <div id="endGameBtns">
+      <button id="playAgain" onclick="replayQuiz()">Play Again</button>
+      <button id="clearHighscore" onclick="clearScore">Clear Highscores</button>
+      <button id="savedHighscores" onclick="savescore()">Save Score</button>
+      </div>
   </div>
 
   <script src="fakescript.js"></script>

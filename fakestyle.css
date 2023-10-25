@@ -9,52 +9,72 @@ body, h1, button, ul, * {
     background-color:#f5deb3;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+}
+/* this is the title of the quiz */
 h1 {
     text-align: center;
     font-size: 2rem;
-    margin-top: 20px;
+    margin: 0; 
+
+}
+
+#highscoreHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 
 /* timer section */
-.time-remaining {
-    float: right;
+.quizTimer {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: flex;
 }
 
 /* styles for button */
 
+.hidden {
+    display: none;
+}
+#highscoreHeader{
+    display: none;
+}
+ #endGameBtns{
+    display: none;
+ }
 
-button {
+
+
+#button {
+    display: none;
     padding: 10px 20px;
     display: block;
     background-color: grey;
     color: #fff;
-    border: nones;
+    border: none;
     cursor: pointer;
     margin: 0 auto;
 }
 /* this function is hidden until end of quiz user logs initials */
-#finalScoreEl, #initials {
-    display: none;
-}
+
 
 #start-button {
     font-size: 1.2rem;
-}
-
-#submitscore, #savescore {
-    margin-top: 20px;
-}
-
-.button:hover {
-    background-color: #99246c;
 }
 
 #questionscontainer {
     text-align: left;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color:#f7f7f7;
+    background-color:#f5deb3;
     margin: 20px;
 }
 
@@ -107,7 +127,7 @@ li {
 button {
     display: inline-block;
     font-family: sans-serif;
-    background-color: grey;
+    background-color: rgb(177, 173, 173);
     border-radius: 10px;
     border: 3px double #cccccc;
     color: #eeeeee;
@@ -119,7 +139,7 @@ button {
 }
 
 button:hover{
-    box-shadow: 4px 3px 6px #4450bd;
+    box-shadow: 4px 3px 6px white;
 }
 
 #savedHighscores {
@@ -127,8 +147,16 @@ button:hover{
     background-color: #474947;  
 }
 
-#save-score:hover {
-    background-color: #474947;
+#finalScoreEl {
+    padding-bottom: 0.5rem;
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
- 
+#gameoverDiv {
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}

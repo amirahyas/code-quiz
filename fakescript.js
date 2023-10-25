@@ -24,7 +24,7 @@ var highScoreHeader = document.getElementById ("highScoreHeader");
 var highscoreInputName = document.getElementById("highscoreInputName")
 
 // initials - refers to the input user logs initials.
-var initials = document.getElementById ("initials");
+var initialsbox = document.getElementById ("initialsbox");
 
 var endGameBtns = document.getElementById ("endGameBtns");
 
@@ -126,6 +126,11 @@ function startQuiz() {
   questionscontainer.style.display = "block";
   startQuizDiv.style.display = "none";
   gameoverDiv.style.display = "none";
+  buttonA.classList.remove('hidden');
+  buttonB.classList.remove('hidden');
+  buttonC.classList.remove('hidden');
+  buttonD.classList.remove('hidden');
+
   generateQuizQuestion();
 
   // timer
@@ -148,16 +153,26 @@ function showScore() {
   clearInterval(timerInterval);
   highscoreInputName.value = "";
   finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
-  // added lines below
-  finalScoreEl.style.display = "block"; // Show finalScoreEl
-  initials.style.display = "block"; // Show initials
+  finalScoreEl.style.display="flex;"
   
+  submitScoreButton.style.display = "block";
+
+}
+
+
+
+function clearScore () {
+  window.localStorage.clear();
+    highscoreDisplayName.textContent = "";
+    highscoreDisplayScore.textContent = "";
+    document.getElementById("clearHighscore").addEventListener("click", clearScore);
+    
 }
 
 
 
 // click button to show high scores
-submitScoreButton.addEventListener("click", function savedHighscores() {
+submitScoreButton.addEventListener("click", function submitScore() {
   if(highscoreInputName.value === "") {
     alert("Initials cannot be blank");
     return false;
@@ -168,6 +183,8 @@ submitScoreButton.addEventListener("click", function savedHighscores() {
       name: currentUser,
       score: score
     };
+
+    
     gameoverDiv.style.display = "none";
     highscoreContainer.style.display = "flex";
     gameoverDiv.style.display = "flex";
@@ -231,30 +248,15 @@ function replayQuiz(){
   startQuizDiv.style.display = "flex";
   timeLeft = 70;
   score = 0;
-  currentQuestionIndex = 0;
+
 }
 
 
-// function saves user intials and score
-function submitScore() {
-  var initials = highscoreInputName.value.trim(); // Get user initials
-    if (initials === "") {
-      alert("Initials cannot be blank");
-      return false;
-    } else {
-      // ... (your existing code for saving score)
 
-      // Save initials along with the score
-      var currentHighscore = {
-          name: initials,
-          submitScore: score
-      }      
-   }
-}
 
 // event listeners for buttons
 startQuizButton.addEventListener("click", startQuiz);
-submitScoreButton.addEventListener("click", submitScore);
+
 buttonA.addEventListener("click", function () { checkAnswer('A'); });
 buttonB.addEventListener("click", function () { checkAnswer('B'); });
 buttonC.addEventListener("click", function () { checkAnswer('C'); });
