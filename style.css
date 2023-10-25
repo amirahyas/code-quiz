@@ -1,71 +1,162 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&family=Poppins:ital,wght@0,300;0,500;0,600;1,400&display=swap');
 
-
-/* Reset CSS */
-* {
+/* Default styles */
+body, h1, button, ul, * {
     margin:0;
     padding: 0;
-    box-sizing: border-box;
-
-    border: 1px solid black;
-}
- /* title heading */
-.h1 {}
-
-/* Global font  */
-
-body {
+    list-style: none;
     font-family: 'Merriweather', serif;
     background-color:#f5deb3;
 }
 
-
-/* outer container section */
-
-.outer-container {
-    padding: 10px;
-    height: 100vh;
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    background-color: #f5deb3;
-
-}
-
-p {
-    color: white;
-    font-size: 1.3em;
-}
-
-button {
-    outline: none;
-    background-color: grey;
-    color: white;
-    font-size: 1.3em;
-}
-
-
-/* Top bar container */
-
-.top-bar p {
-float: right;
-
-}
-
-/* Inner container section */
-.inner-container {
-    background: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: 50%;
-    display: flex;
+    align-items: center;
     justify-content: center;
+    height: 100vh;
+    
+}
+/* this is the title of the quiz */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0; 
+
+}
+
+#highscoreHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+/* timer section */
+.quizTimer {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+/* styles for button */
+
+.hidden {
+    display: none;
+}
+#highscoreHeader{
+    display: none;
+}
+ #endGameBtns{
+    display: none;
+ }
+
+
+
+#button {
+    display: none;
+    padding: 10px 20px;
+    display: block;
+    background-color: grey;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+/* this function is hidden until end of quiz user logs initials */
+
+
+#start-button {
+    font-size: 1.2rem;
+}
+
+#questionscontainer {
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color:#f5deb3;
+    margin: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#result {
+    margin: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+#quizTimer {
+    font-size: 18px;
+}
+
+#submitScoreButton {
+    display: none;
+    background-color: #474947;
+}
+
+#highscoreInputName {
+    display: none;
+    padding: 10px;
+}
+/* Define initial style for buttons */
+
+#answer {
+    border: 2px solid #333;
+    padding: 10 px 20px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#answer:active {
+    background-color: #333;
+    color: #fff;
+}
+
+/* button style */
+button {
+    display: inline-block;
+    font-family: sans-serif;
+    background-color: rgb(177, 173, 173);
+    border-radius: 10px;
+    border: 3px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    width: 200px;
+    margin-top: 3px;
+}
+
+button:hover{
+    box-shadow: 4px 3px 6px white;
+}
+
+#savedHighscores {
+    display: none;
+    background-color: #474947;  
+}
+
+#finalScoreEl {
+    padding-bottom: 0.5rem;
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#gameoverDiv {
+    text-align: center;
+    display: none;
+    flex-direction: column;
     align-items: center;
 }
-
-
-
-/*  Header/intro */
-
-
-
-/* Main Quiz Content */

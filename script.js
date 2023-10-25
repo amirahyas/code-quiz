@@ -1,217 +1,270 @@
-// Gathering HTML elements for manipulation
-var quizBody = document.getElementById("quiz");
-var resultsEl = document.getElementById("result");
-var finalScoreEl = document.getElementById("finalScore");
-var gameoverDiv = document.getElementById("gameover");
-var questionsEl = document.getElementById("questions");
-var quizTimer = document.getElementById("timer");
-var startQuizButton = document.getElementById("startbtn");
-var startQuizDiv = document.getElementById("startpage");
-var highscoreContainer = document.getElementById("highscoreContainer");
-var highscoreDiv = document.getElementById("high-scorePage");
-var highscoreInputName = document.getElementById("initials");
-var highscoreDisplayName = document.getElementById("highscore-initials");
-var endGameBtns = document.getElementById("endGameBtns");
-var submitScoreBtn = document.getElementById("submitScore");
-var highscoreDisplayScore = document.getElementById("highscore-score");
-var buttonA = document.getElementById("a");
-var buttonB = document.getElementById("b");
-var buttonC = document.getElementById("c");
-var buttonD = document.getElementById("d");
+// refers to quizBody div.
+var quizBody = document.getElementById("quizBody");
 
-// Quiz question object
-var quizQuestions = [{
-    question: "How many elements can you apply an 'ID' attribute to?",
-    choiceA: "As many as you want",
-    choiceB: "3",
-    choiceC: "1",
-    choiceD: "128",
-    correctAnswer: "c"},
-  {
-    question: "What does DOM stand for?",
-    choiceA: "Document Object Model",
-    choiceB: "Display Object Management",
-    choiceC: "Digital Ordinance Model",
-    choiceD: "Desktop Oriented Mode",
-    correctAnswer: "a"},
+// variables that manipulate the startquizdiv, startquizbutton, savedhighscores (function).
+var startQuizDiv = document.getElementById("startQuizDiv");
+var startQuizButton = document.getElementById("startQuizButton");
+var savedHighscores = document.getElementById("savedHighscores");
+savedHighscores.addEventListener("click", savedHighscores);
+
+// submitScoreButton- a button for submitting the score.
+var submitScoreButton = document.getElementById("submitScoreButton");
+
+// efinalscoreEl is an element which contains the final score.
+var finalScoreEl = document.getElementById("finalScoreEl");
+
+
+// highscoreDiv refers tot he div that holds the high score display & the header.
+var highscoreDiv = document.getElementById("highscoreDiv");
+var highscoreDisplayScore = document.getElementById("highscoreDisplayScore");
+var highscoreDisplayName = document.getElementById ("highscoreDisplayName");
+var highScoreHeader = document.getElementById ("highScoreHeader");
+
+// user logs name 
+var highscoreInputName = document.getElementById("highscoreInputName")
+
+// initials - refers to the input user logs initials.
+var initialsbox = document.getElementById ("initialsbox");
+
+var endGameBtns = document.getElementById ("endGameBtns");
+
+// refers to gameoverDiv.
+var gameoverDiv = document.getElementById("gameoverDiv");
+
+// quizTimer - displays amount of time remaining.
+var quizTimer = document.getElementById ("quizTimer");
+
+// questionsEl - refers to the question element.
+var questionsEl = document.getElementById("questionsEl");
+
+var showHighScore = document.getElementById("showHighScore");
+
+// questionscontainer- refers to questions container. This container has buttons for A,B,C,D and results.
+var questionscontainer = document.getElementById("questionscontainer");
+var buttonA = document.getElementById("A");
+var buttonB = document.getElementById("B");
+var buttonC = document.getElementById("C");
+var buttonD = document.getElementById("D");
+// add result id to html
+var result = document.getElementById("result"); 
+
+// Quiz questions
+ var quizQuestions = [{
+  question: "What does WWW stand for?",
+  choiceA : "A. Word Walt Water",
+  choiceB : "B. When We Would",
+  choiceC : "C. World Wide Web",
+  choiceD : "D.None of the above",
+  correctAnswer: "C"
+  },
    {
-    question: "What is used primarily to add styling to a web page?",
-    choiceA: "HTML",
-    choiceB: "CSS",
-    choiceC: "Python",
-    choiceD: "React.js",
-    correctAnswer: "b"},
-    {
-    question: "What HTML tags are JavaScript code wrapped in?",
-    choiceA: "&lt;div&gt;",
-    choiceB: "&lt;link&gt;",
-    choiceC: "&lt;head&gt;",
-    choiceD: "&lt;script&gt;",
-    correctAnswer: "d"},
-    {
-    question: "When is localStorage data cleared?",
-    choiceA: "No expiration time",
-    choiceB: "On page reload",
-    choiceC: "On browser close",
-    choiceD: "On computer restart",
-    correctAnswer: "a"},  
-    {
-    question: "What does WWW stand for?",
-    choiceA: "Web World Workings",
-    choiceB: "Weak Winter Wind",
-    choiceC: "World Wide Web",
-    choiceD: "Wendy Wants Waffles",
-    correctAnswer: "c"},
-    {
-    question: "What HTML attribute references an external JavaScript file?",
-    choiceA: "href",
-    choiceB: "src",
-    choiceC: "class",
-    choiceD: "index",
-    correctAnswer: "b"},
-        
-    
-    ];
-// Other global variables
+  question: " What are Arrays in JavaScript used to store?",
+  choiceA : "A. Numbers & strings",
+  choiceB : "B. Other arrays",
+  choiceC : "C. Booleans",
+  choiceD : "D. All of the above",
+  correctAnswer: "D"
+ },
+ {
+  question : "Commonly used data types do not include:",
+  choiceA: "A. strings",
+  choiceB: "B. booleans",
+  choiceC: "C. numbers",
+  choiceD: "D. alerts",
+  correctAnswer: "D"
+},
+{
+  question : "What's the HTML tag for creating an ordered list?",
+  choiceA:"A. <p>",
+  choiceB: "B. <ol>",
+  choiceC:"C. <ul>",
+  choiceD: "D. None of the above",
+  correctAnswer: "B"
+}, 
+{
+  question : "String values must be enclosed within ______ when being assigned to variables.",
+  choiceA: "A. commas",
+  choiceB: "B. curly brackets",
+  choiceC: "C. quotes",
+  choiceD: "D. parentheses",
+  correctAnswer: "C"
+},
+];
+
+
+// global variables
 var finalQuestionIndex = quizQuestions.length;
-var currentQuestionIndex = 0;
-var timeLeft = 76; 
+var timeLeft = 70; // initial time
 var timerInterval;
 var score = 0;
 var correct;
+var currentQuestionIndex = 0; 
 
-// This function cycles through the object array containing the quiz questions to generate the questions and answers.
+// this function generates questions & answers
 function generateQuizQuestion(){
-    gameoverDiv.style.display = "none";
-    if (currentQuestionIndex === finalQuestionIndex){
-        return showScore();
-    } 
-    var currentQuestion = quizQuestions[currentQuestionIndex];
-    questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
-    buttonA.innerHTML = currentQuestion.choiceA;
-    buttonB.innerHTML = currentQuestion.choiceB;
-    buttonC.innerHTML = currentQuestion.choiceC;
-    buttonD.innerHTML = currentQuestion.choiceD;
+
+  if (currentQuestionIndex===finalQuestionIndex)
+  {
+    showScore();
+  }
+    var currentQuestion = quizQuestions[currentQuestionIndex]; 
+  
+  if (currentQuestion !== undefined) {
+
+  questionsEl.textContent = currentQuestion.question;
+  buttonA.textContent = currentQuestion.choiceA;
+  buttonB.textContent = currentQuestion.choiceB;
+  buttonC.textContent = currentQuestion.choiceC;
+  buttonD.textContent = currentQuestion.choiceD;
+  }
+  
 };
 
-// Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
-function startQuiz(){
-    gameoverDiv.style.display = "none";
-    startQuizDiv.style.display = "none";
-    generateQuizQuestion();
 
-    //Timer
-    timerInterval = setInterval(function() {
-        timeLeft--;
-        quizTimer.textContent = "Time left: " + timeLeft;
-    
-        if(timeLeft === 0) {
-          clearInterval(timerInterval);
-          showScore();
-        }
-      }, 1000);
-    quizBody.style.display = "block";
-}
-// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
-function showScore(){
-    quizBody.style.display = "none"
-    gameoverDiv.style.display = "flex";
-    clearInterval(timerInterval);
-    highscoreInputName.value = "";
-    finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
-}
+// start quiz starts the timer & displays first question
+function startQuiz() {
+  questionscontainer.style.display = "block";
+  startQuizDiv.style.display = "none";
+  gameoverDiv.style.display = "none";
+  buttonA.classList.remove('hidden');
+  buttonB.classList.remove('hidden');
+  buttonC.classList.remove('hidden');
+  buttonD.classList.remove('hidden');
 
-// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
-// as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
-submitScoreBtn.addEventListener("click", function highscore(){
-    
-    
-    if(highscoreInputName.value === "") {
-        alert("Initials cannot be blank");
-        return false;
-    }else{
-        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-        var currentUser = highscoreInputName.value.trim();
-        var currentHighscore = {
-            name : currentUser,
-            score : score
-        };
-    
-        gameoverDiv.style.display = "none";
-        highscoreContainer.style.display = "flex";
-        highscoreDiv.style.display = "block";
-        endGameBtns.style.display = "flex";
-        
-        savedHighscores.push(currentHighscore);
-        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-        generateHighscores();
+  generateQuizQuestion();
 
+  // timer
+
+  timerInterval = setInterval(function() {
+    timeLeft--;
+    quizTimer.textContent = "Time left: " + timeLeft;
+
+    if(timeLeft === 0) {
+      clearInterval(timerInterval);
+      showScore();
     }
-    
-});
+  }, 1000);
+  quizBody.style.display = "block";
+}
+function showScore() {
+  console.log("show score called")
+  quizBody.style.display = "none"
+  gameoverDiv.style.display = "flex";
+  clearInterval(timerInterval);
+  highscoreInputName.value = ""
+  finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+  finalScoreEl.style.display="flex;"
+  
+  submitScoreButton.style.display = "block";
 
-// This function clears the list for the high scores and generates a new high score list from local storage
-function generateHighscores(){
-    highscoreDisplayName.innerHTML = "";
-    highscoreDisplayScore.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i=0; i<highscores.length; i++){
-        var newNameSpan = document.createElement("li");
-        var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
-        highscoreDisplayName.appendChild(newNameSpan);
-        highscoreDisplayScore.appendChild(newScoreSpan);
-    }
 }
 
-// This function displays the high scores page while hiding all of the other pages from 
-function showHighscore(){
-    startQuizDiv.style.display = "none"
-    gameoverDiv.style.display = "none";
-    highscoreContainer.style.display = "flex";
-    highscoreDiv.style.display = "block";
-    endGameBtns.style.display = "flex";
 
-    generateHighscores();
-}
 
-// This function clears the local storage of the high scores as well as clearing the text from the high score board
-function clearScore(){
-    window.localStorage.clear();
+function clearScore () {
+  window.localStorage.clear();
     highscoreDisplayName.textContent = "";
     highscoreDisplayScore.textContent = "";
+    document.getElementById("clearHighscore").addEventListener("click", clearScore);
+    
 }
 
-// This function sets all the variables back to their original values and shows the home page to enable replay of the quiz
-function replayQuiz(){
-    highscoreContainer.style.display = "none";
+// click button to show high scores
+submitScoreButton.addEventListener("click", function submitScore() {
+  if(highscoreInputName.value === "") {
+    alert("Initials cannot be blank");
+    return false;
+  } else {
+    var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    var currentUser = highscoreInputName.value.trim();
+    var currentHighscore = {
+      name: currentUser,
+      score: score
+    };
+
+    
     gameoverDiv.style.display = "none";
-    startQuizDiv.style.display = "flex";
-    timeLeft = 76;
-    score = 0;
-    currentQuestionIndex = 0;
+    highscoreContainer.style.display = "flex";
+    gameoverDiv.style.display = "flex";
+
+    savedHighscores.push(currentHighscore);
+    localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+    
+  };
+});
+
+
+function generatesavedHighscores() {
+  var savedHighscores= JSON.parse(localStorage.getItem("savedHighscores")) || [];
+  highscoreDisplayScore.innerHTML = "";
+  highscoreDisplayName.innerHTML = "";
+ for (i = 0; i < savedHighscores.length; i++) {
+  var newScoreSpan = document.createElement("li");
+  var newNameSpan = document.createElement("li");
+  newScoreSpan.textContent = savedHighscores[i].score;
+  newNameSpan.textContent = savedHighscores[i].name;
+  highscoreDisplayName.appendChild(newNameSpan);
+  highscoreDisplayScore.appendChild(newScoreSpan);
 }
 
-// This function checks the response to each answer 
-function checkAnswer(answer){
-    correct = quizQuestions[currentQuestionIndex].correctAnswer;
-
-    if (answer === correct && currentQuestionIndex !== finalQuestionIndex){
-        score++;
-        alert("That Is Correct!");
-        currentQuestionIndex++;
-        generateQuizQuestion();
-        //display in the results div that the answer is correct.
-    }else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex){
-        alert("That Is Incorrect.")
-        currentQuestionIndex++;
-        generateQuizQuestion();
-        //display in the results div that the answer is wrong.
-    }else{
-        showScore();
-    }
 }
 
-// This button starts the quiz!
-startQuizButton.addEventListener("click",startQuiz);
+
+// Function to check selected answer
+function checkAnswer(selectedAnswer) {
+  correct = quizQuestions[currentQuestionIndex].correctAnswer;
+
+  if (selectedAnswer === correct && currentQuestionIndex !== finalQuestionIndex){ 
+    score++;
+    alert("That is correct!")
+    currentQuestionIndex++;
+    generateQuizQuestion();
+  
+  } else if (selectedAnswer !== correct && currentQuestionIndex !== finalQuestionIndex){
+    alert("That Is Incorrect.")
+    currentQuestionIndex++;
+    timeLeft -= 10; // Time penalty for incorrect answer
+    generateQuizQuestion()
+  } else{
+    showScore();
+  }
+
+}
+// this function displays high score page
+function generateHighscores(){
+  startQuizDiv.style.display = "none"
+  gameoverDiv.style.display = "none";
+  highscoreContainer.style.display = "flex";
+  highscoreDisplayScore.style.display = "block";
+  endGameBtns.style.display = "flex";
+}
+
+
+// this functions starts quiz over
+function replayQuiz(){
+  highscoreContainer.style.display = "none";
+  gameoverDiv.style.display = "none";
+  startQuizDiv.style.display = "flex";
+  timeLeft = 70;
+  score = 0;
+
+}
+
+
+
+
+// event listeners for buttons
+startQuizButton.addEventListener("click", startQuiz);
+
+buttonA.addEventListener("click", function () { checkAnswer('A'); });
+buttonB.addEventListener("click", function () { checkAnswer('B'); });
+buttonC.addEventListener("click", function () { checkAnswer('C'); });
+buttonD.addEventListener("click", function () { checkAnswer('D'); });
+
+
+
+function init() {
+  questionscontainer.style.display = "none";
+} 
+
+init();
