@@ -156,7 +156,7 @@ function showScore() {
   finalScoreEl.style.display="flex;"
   
   submitScoreButton.style.display = "block";
-
+  
 }
 
 
@@ -170,8 +170,9 @@ function clearScore () {
 }
 
 // click button to show high scores
-submitScoreButton.addEventListener("click", function submitScore() {
-  if(highscoreInputName.value === "") {
+submitScoreButton.addEventListener("click", function () {
+  initials=initialsbox.value;
+  if(initials === "") {
     alert("Initials cannot be blank");
     return false;
   } else {
@@ -189,6 +190,11 @@ submitScoreButton.addEventListener("click", function submitScore() {
 
     savedHighscores.push(currentHighscore);
     localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+
+    var submittedInitials = document.getElementById("submittedInitials");
+    var submittedScore = document.getElementById("submittedScore");
+    submittedInitials.textContent = "Initials: " + currentUser;
+    submittedScore.textContent = "Score: " + score;
     
   };
 });
@@ -264,7 +270,8 @@ buttonD.addEventListener("click", function () { checkAnswer('D'); });
 
 
 function init() {
-  questionscontainer.style.display = "none";
-} 
+
+ questionscontainer.style.display = "none";
+ }
 
 init();
