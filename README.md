@@ -1,6 +1,6 @@
 # code-quiz
 #Demo
-website link:
+website link:https://amirahyas.github.io/code-quiz/
 screenshot:![Screenshot (6)](https://github.com/amirahyas/code-quiz/assets/143109513/703eee08-9181-4f0d-9454-05418f674f11)
 
 
