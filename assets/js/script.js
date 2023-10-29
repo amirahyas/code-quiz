@@ -172,6 +172,7 @@ function clearScore () {
 // click button to show high scores
 submitScoreButton.addEventListener("click", function () {
   initials=initialsbox.value;
+  highscoreInputName.value=initials;
   if(initials === "") {
     alert("Initials cannot be blank");
     return false;
